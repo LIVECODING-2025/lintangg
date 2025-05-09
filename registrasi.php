@@ -1,3 +1,19 @@
+<?php
+include ("function.php");
+
+if ( isset($_POST["register"] )) {
+        
+  if ( registrasi($_POST) > 0 ) {
+      echo "<script> 
+              alert('registrasi berhasil');
+          </script>";
+      header("location:login.php");
+  } else {
+      echo mysqli_error($koneksi);
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,25 +31,25 @@
       </div>
     </div>
     <div class="right-panell">
-      <form class="form-boxx">
+      <form class="form-boxx" method="POST" action="">
         <h2>Registrasi</h2>
 
         <div class="form-groupp">
           <label for="username"><i class="fas fa-user"></i> Username</label>
-          <input type="text" id="username" placeholder="Masuk'kan Username Anda">
+          <input type="text" id="username" name="username" placeholder="Masuk'kan Username Anda">
         </div>
 
         <div class="form-groupp">
           <label for="password"><i class="fas fa-lock"></i> Password</label>
-          <input type="password" id="password" placeholder="Masuk'kan Password Anda">
+          <input type="password" id="password" name="password" placeholder="Masuk'kan Password Anda">
         </div>
 
         <div class="form-groupp">
           <label for="nama"><i class="fas fa-id-card"></i> Nama</label>
-          <input type="text" id="nama" placeholder="Masuk'kan Nama Anda">
+          <input type="text" id="nama" name="nama" placeholder="Masuk'kan Nama Anda">
         </div>
 
-        <button type="submit" class="btnn">Registrasi</button>
+        <button type="submit" name="register" class="btnn">Registrasi</button>
       </form>
     </div>
   </div>

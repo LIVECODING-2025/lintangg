@@ -1,20 +1,8 @@
 <?php
-session_start();
 include ("function.php");
 
-// Fungsi untuk format rupiah
-function rupiah($angka) {
-    return 'Rp ' . number_format($angka, 0, ',', '.');
-}
-
 // Query untuk mengambil data dari tabel produk, mengurutkan berdasarkan id secara menurun
-$data = mysqli_query($koneksi, 'SELECT * FROM data_wisata ORDER BY id DESC');
-
-// Mendapatkan pesan dari session
-$pesan = isset($_SESSION['pesan']) ? $_SESSION['pesan'] : NULL;
-
-// Menghapus pesan dari session setelah diambil
-unset($_SESSION['pesan']);
+$data = mysqli_query($koneksi, 'SELECT * FROM data_user ORDER BY id DESC');
 ?>
 
 <!DOCTYPE html>
@@ -47,20 +35,21 @@ unset($_SESSION['pesan']);
     <ul class="navbar-nav sidebar sidebar-dark accordion custom-sidebar" id="accordionSidebar" style="background-color: #013220;">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
             <div class="sidebar-brand-icon rotate-n-10">
-                <img src="foto/logo admin real.png" alt="Logo" style="width: 160px; height: 30px; margin-top: 10px;">
+                <img src="foto/logo admin real.png" alt="Logo" style="width: 160px; height: 30px; margin-top:10px;">
             </div>
+
         </a>
 
         <hr class="sidebar-divider my-0">
-
+       
         <li class="nav-item">
             <a class="nav-link" href="dashboard.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
         </li>
-        <!-- Heading -->
-        <div class="sidebar-heading">
+         <!-- Heading -->
+         <div class="sidebar-heading">
                Tambahan
         </div>
         <li class="nav-item">
@@ -69,13 +58,13 @@ unset($_SESSION['pesan']);
                 <span>Tambah Wisata</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="data_pemesanan.php">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Data Pemesanan</span>
             </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="admin.php">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Daftar Wisata</span>
@@ -121,29 +110,18 @@ unset($_SESSION['pesan']);
                 <h1 class="h3 mb-2 text-gray-800">Tabel</h1>
                 <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold" style="color: #013220;">Data Wisata</h6>
+                    <h6 class="m-0 font-weight-bold" style="color: #013220;">Data Pemesanan</h6>
                 </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <?php if ($pesan && $pesan['type'] === 'berhasil') { ?>
-                                <div class="alert alert-success" role="alert">
-                                    <?= $pesan['isi']; ?>
-                                </div>
-                            <?php } else if ($pesan && $pesan['type'] === 'gagal') { ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <?= $pesan['isi']; ?>
-                                </div>
-                            <?php } ?>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th class="text-center">No</th>
+                                    <th>Nama</th>
+                                    <th>Notelfon</th>
+                                    <th>Tanggal Booking</th>
                                     <th>Nama Wisata</th>
-                                    <th>Harga</th>
-                                    <th>Gambar</th>
-                                    <th>Deskripsi</th>
-                                    <th>Lokasi</th>
-                                    <th>Kategori</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
@@ -151,33 +129,21 @@ unset($_SESSION['pesan']);
                                 <?php
                                 $i = 1;
                                 while ($row = mysqli_fetch_assoc($data)) {
-                                    ?>
+                                ?>
                                     <tr>
                                         <td class="text-center"><?= $i++ ?></td>
+                                        <td><?= $row['nama']; ?></td>
+                                        <td><?= $row['notelfon']; ?></td>
+                                        <td><?= $row['tanggal_booking']; ?></td>
                                         <td><?= $row['nama_wisata']; ?></td>
-                                        <td><?= rupiah($row['harga']); ?></td> <!-- Harga diformat ke Rupiah -->
-                                        <td class="text-center"><img src="foto/<?= $row['gambar']; ?>" alt=""
-                                                                        width="100px"></td>
-                                        <td><?= $row['deskripsi']; ?></td>
-                                        <td><?= $row['lokasi']; ?></td>
-                                        <td><?= $row['kategori']; ?></td>
                                         <td>
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <form action="form_edit.php" method="get"
-                                                      onsubmit="return confirm('Apa Anda ingin mengedit data wisata ini?');">
-                                                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                                    <button type="submit" name="edit" class="btn" style="background-color: #013220; color: white;">
-                                                        <i class="ti ti-edit text-center"></i>
-                                                    </button>
-                                                </form>
-                                                <form action="hapus.php" method="get"
-                                                      onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
-                                                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                                    <button type="submit" name="hapus" class="btn" style="background-color: #690B22; color: white;">
-                                                        <i class="ti ti-trash text-center"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                            <form action="hapus.php" method="get"
+                                                onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
+                                                <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                                                <button type="submit" name="hapus" class="btn" style="background-color: #690B22; color: white;">
+                                                    <i class="ti ti-trash text-center"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php } ?>

@@ -617,8 +617,8 @@ color: #0A3D2C;
 
 .btn-detail {
   display: inline-block;
-  background-color: #0A3D2C;
-  color: white;
+  background-color: white;
+  color: #013220;
   text-decoration: none;
   padding: 8px 14px;
   border-radius: 4px;

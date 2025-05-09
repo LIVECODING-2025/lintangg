@@ -80,7 +80,7 @@ if (isset($_POST['submit_booking'])) {
     <section class="herrlo">
           <div class="overlay">
             <div class="herlo-content" style="color: white;">
-                <p class="harga" style="text-align:center;">Htm <strong>Rp.<?= number_format($data["harga"]); ?></strong></p>
+                <p class="harga" style="text-align:center;">Harga <strong>Rp.<?= number_format($data["harga"] , 0, ',', '.'); ?></strong></p>
                 <h1 class="judul">Explore <?= $data["nama_wisata"]; ?></</h1>
                 <p class="lokasi">
                     <i class="fas fa-map-marker-alt"></i>

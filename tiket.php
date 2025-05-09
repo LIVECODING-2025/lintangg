@@ -63,10 +63,10 @@ $data = mysqli_fetch_assoc($result);
     </header>
 
 <!-- Header Hero -->
-    <section class="herlo">
+    <section class="herrlo">
           <div class="overlay">
-            <div class="herlo-content">
-                <p class="harga">Harga <strong>Rp.<?= number_format($data["harga"]); ?></strong></p>
+            <div class="herrlo-content">
+                <p class="harga">Harga <strong>Rp.<?= number_format($data["harga"] , 0, ',', '.'); ?></strong></p>
                 <h1 class="judul">Explore <?= $data["nama_wisata"]; ?></</h1>
                 <p class="lokasi">
                     <i class="fas fa-map-marker-alt"></i>

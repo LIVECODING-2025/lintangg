@@ -14,7 +14,7 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Piknik'in.Aja Admin</title>
+    <title>Admin Piknik'in.Aja</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,7 +42,7 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
         <ul class="navbar-nav sidebar sidebar-dark accordion custom-sidebar" id="accordionSidebar" style="background-color: #013220;">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
             <div class="sidebar-brand-icon rotate-n-10">
-                <img src="Frame 23.png" alt="Logo" style="width: 150px; height: 100px;">
+                <img src="foto/logo admin real.png" alt="Logo" style="width: 160px; height: 30px; margin-top: 10px;">
             </div>
         </a>
 
@@ -58,16 +58,22 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
         <div class="sidebar-heading">
                Tambahan
         </div>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="form_tambahproduk.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Tambah Produk</span>
+                <span>Tambah Wisata</span>
             </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
+            <a class="nav-link" href="data_pemesanan.php">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Pemesanan</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="admin.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tabel</span>
+                <span>Data Wisata</span>
             </a>
         </li>
 
@@ -101,8 +107,12 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            <img class="img-profile rounded-circle" 
+                                src="img/undraw_profile.svg" 
+                                alt="Profile" 
+                                style="width: 40px; height: 40px;">
                         </a>
+
                         <?php endwhile ?>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

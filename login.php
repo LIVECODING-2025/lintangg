@@ -1,3 +1,60 @@
+<?php 
+session_start();
+include "function.php"; // koneksi ke DB
+
+// Jika sudah login, redirect ke halaman masing-masing
+if (isset($_SESSION["level"])) {
+    if ($_SESSION["level"] === "Admin") {
+        header("Location: admin.php");
+        exit;
+    } else if ($_SESSION["level"] === "User") {
+        header("Location: dashboard.php");
+        exit;
+    }
+}
+
+// Inisialisasi variabel error
+$error = "";
+
+// Proses login hanya jika tombol submit ditekan
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Hindari SQL injection (gunakan prepared statement jika memungkinkan)
+    $username = mysqli_real_escape_string($koneksi, $username);
+
+    $result = mysqli_query($koneksi, "SELECT * FROM data_login WHERE username = '$username'");
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+
+        if (password_verify($password, $row["password"])) {
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["level"] = $row["level"];
+
+            // Redirect berdasarkan level
+            if ($row["level"] === "Admin") {
+                header("Location: admin.php");
+                exit;
+            } else if ($row["level"] === "User") {
+                header("Location: dashboard.php");
+                exit;
+            } else {
+                $error = "Level tidak dikenali!";
+            }
+        } else {
+            $error = "Password salah!";
+        }
+    } else {
+        $error = "Username tidak ditemukan!";
+    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -16,18 +73,21 @@
             </div>
         </div>
         <div class="right-panel">
-            <form class="login-form">
+        <?php if ($error): ?>
+            <script>alert("<?= $error ?>");</script>
+        <?php endif; ?>
+            <form class="login-form" action="login.php" method="POST">
                 <h2>Login</h2>
                 <div class="form-group">
                     <label for="username"><i class="fas fa-user"></i> Username</label>
-                    <input type="text" id="username" placeholder="Masuk'kan Username Anda">
+                    <input type="text" name="username" id="username" placeholder="Masuk'kan Username Anda" require>
                 </div>
                 <div class="form-group">
                     <label for="password"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" id="password" placeholder="Masuk'kan Password Anda">
+                    <input type="password" name="password" id="password" placeholder="Masuk'kan Password Anda" require>
                 </div>
                 <a href="registrasi.php" class="no-account">Belum Punya Akun?</a>
-                <button type="submit" class="btn-login">Login</button>
+                <button type="submit" name="login" class="btn-login">Login</button>
             </form>
         </div>
     </div>
