@@ -3,6 +3,15 @@ include ("function.php");
 
 $wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Gunung'");
 
+if (isset($_POST["cari_kategori_gunung"])) {
+    $wisata = cari_kategori_gunung($_POST["keyword"]);
+}
+
+if (isset($_POST["cari_kategori_gunung_lokasi"])) {
+    $keyword = $_POST["keyword"];
+    $kategori = $_POST["kategori"]; // contoh: 'gunung'
+    $wisata = cari_kategori_gunung_lokasi($keyword, $kategori);
+}
 ?>
 
 
@@ -34,15 +43,17 @@ $wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Gunung'");
 
             <a href="tentang_kami.php">Tentang Kami</a>
         </nav>
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search">
-                <button class="search-btnnn">
-                    <i class="fas fa-search"></i>
-                </button>
+        <form action="" method="POST">
+            <div class="search-loginn">
+                <div class="search-boxxx">
+                    <input type="text" placeholder="Search" name="keyword">
+                    <button class="search-btnnn" name="cari_kategori_gunung">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="login-btnn">Logout</button>
             </div>
-            <button class="login-btnn">Logout</button>
-        </div>
+        </form>
     </header>
 
 <!-- Hero Section -->
@@ -52,19 +63,22 @@ $wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Gunung'");
     </section>
 
 <!-- Search Bar -->
-    <section class="search-bar">
-        <i class="fas fa-map-marker-alt"></i>
-        <input type="text" placeholder="kemana kamu pergi?">
-        <button class="search-btn">Search</button>
-        <div class="dropdownn">
-            <button class="dropbtnn">All Categories</button>
-            <div class="dropdown-contentt">
-                <a href="kategori_pantai.php" data-category="pantai">Pantai</a>
-                <a href="#" data-category="gunung">Gunung</a>
-                <a href="kategori_airterjun.php" data-category="air-terjun">Air Terjun</a>
+    <form action="" method="POST">
+        <section class="search-bar">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" placeholder="kemana kamu pergi?" name="keyword">
+            <input type="hidden" name="kategori" value="Gunung"> <!-- Ganti sesuai kategori -->
+            <button class="search-btn" name="cari_kategori_gunung_lokasi">Search</button>
+            <div class="dropdownn">
+                <button class="dropbtnn">All Categories</button>
+                <div class="dropdown-contentt">
+                    <a href="kategori_pantai.php" data-category="pantai">Pantai</a>
+                    <a href="#" data-category="gunung">Gunung</a>
+                    <a href="kategori_airterjun.php" data-category="air-terjun">Air Terjun</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </form>
 
 <!-- Destinasi -->
 <section class="top-destination">

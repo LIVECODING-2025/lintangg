@@ -137,13 +137,22 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_user ORDER BY id DESC');
                                         <td><?= $row['tanggal_booking']; ?></td>
                                         <td><?= $row['nama_wisata']; ?></td>
                                         <td>
-                                            <form action="hapus.php" method="get"
-                                                onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
-                                                <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                                <button type="submit" name="hapus" class="btn" style="background-color: #690B22; color: white;">
-                                                    <i class="ti ti-trash text-center"></i>
-                                                </button>
-                                            </form>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <form action="form_edit.php" method="get"
+                                                      onsubmit="return confirm('Apa Anda ingin mengedit data wisata ini?');">
+                                                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                                                    <button type="submit" name="edit" class="btn" style="background-color: #013220; color: white;">
+                                                        <i class="ti ti-edit text-center"></i>
+                                                    </button>
+                                                </form>
+                                                <form action="hapus.php" method="get"
+                                                      onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
+                                                    <input type="hidden" name="id" value="<?= $row['id']; ?>">
+                                                    <button type="submit" name="hapus" class="btn" style="background-color: #690B22; color: white;">
+                                                        <i class="ti ti-trash text-center"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>

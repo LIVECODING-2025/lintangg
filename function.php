@@ -25,5 +25,83 @@ function registrasi($data) {
 
     return mysqli_affected_rows($koneksi);
 }
+
+function cari_dashboard($keyword) {
+    // Escape keyword untuk mencegah SQL injection
+    $keyword = htmlspecialchars($keyword);
+
+    // Query pencarian berdasarkan nama_wisata dan lokasi
+    $query = "SELECT * FROM data_wisata 
+              WHERE nama_wisata LIKE '%$keyword%' 
+              OR lokasi LIKE '%$keyword%'";
+    
+    return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
+}
+
+function cari_kategori_pantai($keyword) {
+    // Escape keyword untuk mencegah SQL injection
+    $keyword = htmlspecialchars($keyword);
+
+    // Query pencarian berdasarkan nama_wisata dan lokasi
+    $query = "SELECT * FROM data_wisata 
+              WHERE nama_wisata LIKE '%$keyword%'";
+    
+    return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
+}
+
+function cari_kategori_pantai_lokasi($keyword, $kategori) {
+    $keyword = htmlspecialchars($keyword);
+    $kategori = htmlspecialchars($kategori);
+
+    $query = "SELECT * FROM data_wisata 
+              WHERE kategori = '$kategori' 
+              AND lokasi LIKE '%$keyword%'";
+
+    return query($query); // Asumsikan fungsi query() sudah tersedia
+}
+
+function cari_kategori_airterjun($keyword) {
+    // Escape keyword untuk mencegah SQL injection
+    $keyword = htmlspecialchars($keyword);
+
+    // Query pencarian berdasarkan nama_wisata dan lokasi
+    $query = "SELECT * FROM data_wisata 
+              WHERE nama_wisata LIKE '%$keyword%'";
+    
+    return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
+}
+
+function cari_kategori_airterjun_lokasi($keyword, $kategori) {
+    $keyword = htmlspecialchars($keyword);
+    $kategori = htmlspecialchars($kategori);
+
+    $query = "SELECT * FROM data_wisata 
+              WHERE kategori = '$kategori' 
+              AND lokasi LIKE '%$keyword%'";
+
+    return query($query); // Asumsikan fungsi query() sudah tersedia
+}
+
+function cari_kategori_gunung($keyword) {
+    // Escape keyword untuk mencegah SQL injection
+    $keyword = htmlspecialchars($keyword);
+
+    // Query pencarian berdasarkan nama_wisata dan lokasi
+    $query = "SELECT * FROM data_wisata 
+              WHERE nama_wisata LIKE '%$keyword%'";
+    
+    return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
+}
+
+function cari_kategori_gunung_lokasi($keyword, $kategori) {
+    $keyword = htmlspecialchars($keyword);
+    $kategori = htmlspecialchars($kategori);
+
+    $query = "SELECT * FROM data_wisata 
+              WHERE kategori = '$kategori' 
+              AND lokasi LIKE '%$keyword%'";
+
+    return query($query); // Asumsikan fungsi query() sudah tersedia
+}
 ?>
 

@@ -3,6 +3,9 @@ include ("function.php");
 
 $wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Pantai'");
 
+if (isset($_POST["cari_dashboard"])) {
+    $wisata = cari_dashboard($_POST["keyword"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +36,17 @@ $wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Pantai'");
 
             <a href="tentang_kami.php">Tentang Kami</a>
         </nav>
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search">
-                <button class="search-btnnn">
-                    <i class="fas fa-search"></i>
-                </button>
+        <form action="" method="POST">
+            <div class="search-loginn">
+                <div class="search-boxxx">
+                    <input type="text" placeholder="Search" name="keyword">
+                    <button class="search-btnnn" name="cari_dashboard">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="login-btnn">Logout</button>
             </div>
-            <button class="login-btnn">Logout</button>
-        </div>
+        </form>
     </header>
 
     <!-- Hero Section -->

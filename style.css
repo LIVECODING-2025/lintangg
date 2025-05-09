@@ -245,6 +245,7 @@ color: #0A3D2C;
 
   /* Popup container */
   .popup-container {
+    position: relative; /* Penting untuk meletakkan tombol X di dalam */
     display: flex;
     background: #fff;
     border-radius: 12px;
@@ -323,15 +324,15 @@ color: #0A3D2C;
   /* Close button */
   .close-btn {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: 15px;
+    right: 15px;
     font-size: 24px;
     background: none;
     border: none;
-    color: white;
+    color: #333; /* Sesuaikan warna agar terlihat di background putih */
     cursor: pointer;
-    z-index: 11;
-  } 
+    z-index: 1;
+  }  
   
   /* Popup Tiket */
   .btn-open-popup {
