@@ -1,7 +1,7 @@
 <?php 
 include ("function.php");
 
-$wisata = query("SELECT * FROM data_wisata WHERE kategori = 'AirTerjun'");
+$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'AirTerjun'");
 
 if (isset($_POST["cari_kategori_airterjun"])) {
     $wisata = cari_kategori_airterjun($_POST["keyword"]);

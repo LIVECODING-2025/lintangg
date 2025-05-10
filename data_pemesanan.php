@@ -2,7 +2,7 @@
 include ("function.php");
 
 // Query untuk mengambil data dari tabel produk, mengurutkan berdasarkan id secara menurun
-$data = mysqli_query($koneksi, 'SELECT * FROM data_user ORDER BY id DESC');
+$data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_user ORDER BY id DESC');
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    $query = $koneksi->query("SELECT * FROM data_user");
+                    $query = $koneksi->query("SELECT * FROM data_userr");
                     while ($row = $query->fetch_assoc()):
                     ?>
                         <li class="nav-item dropdown no-arrow">

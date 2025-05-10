@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
         if (move_uploaded_file($_FILES["gambar"]["tmp_name"], $target_file)) {
             $gambar = basename($_FILES["gambar"]["name"]);
 
-            $query = "INSERT INTO data_wisata (nama_wisata, harga, gambar, deskripsi, kategori, lokasi)
+            $query = "INSERT INTO data_wisataa (nama_wisata, harga, gambar, deskripsi, kategori, lokasi)
                       VALUES ('$nama_wisata', '$harga', '$gambar', '$deskripsi', '$kategori', '$lokasi')";
 
             if ($koneksi->query($query) === TRUE) {

@@ -5,7 +5,7 @@ if(isset($_GET['edit'])){
 $id = $_GET['id'];
 
 
-$wisata = mysqli_query($koneksi,"SELECT * FROM data_wisata where id = '$id'");
+$wisata = mysqli_query($koneksi,"SELECT * FROM data_wisataa where id = '$id'");
 
 if($result = mysqli_fetch_assoc($wisata)){
     $id = $result['id'];

@@ -21,7 +21,7 @@ function registrasi($data) {
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_query($koneksi, "INSERT INTO data_login (username, password,nama) VALUES ('$username','$password', '$nama')" );
+    mysqli_query($koneksi, "INSERT INTO data_loginn (username, password,nama) VALUES ('$username','$password', '$nama')" );
 
     return mysqli_affected_rows($koneksi);
 }
@@ -31,7 +31,7 @@ function cari_dashboard($keyword) {
     $keyword = htmlspecialchars($keyword);
 
     // Query pencarian berdasarkan nama_wisata dan lokasi
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE nama_wisata LIKE '%$keyword%' 
               OR lokasi LIKE '%$keyword%'";
     
@@ -43,7 +43,7 @@ function cari_kategori_pantai($keyword) {
     $keyword = htmlspecialchars($keyword);
 
     // Query pencarian berdasarkan nama_wisata dan lokasi
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa
               WHERE nama_wisata LIKE '%$keyword%'";
     
     return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
@@ -53,7 +53,7 @@ function cari_kategori_pantai_lokasi($keyword, $kategori) {
     $keyword = htmlspecialchars($keyword);
     $kategori = htmlspecialchars($kategori);
 
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE kategori = '$kategori' 
               AND lokasi LIKE '%$keyword%'";
 
@@ -65,7 +65,7 @@ function cari_kategori_airterjun($keyword) {
     $keyword = htmlspecialchars($keyword);
 
     // Query pencarian berdasarkan nama_wisata dan lokasi
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE nama_wisata LIKE '%$keyword%'";
     
     return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
@@ -75,7 +75,7 @@ function cari_kategori_airterjun_lokasi($keyword, $kategori) {
     $keyword = htmlspecialchars($keyword);
     $kategori = htmlspecialchars($kategori);
 
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE kategori = '$kategori' 
               AND lokasi LIKE '%$keyword%'";
 
@@ -87,7 +87,7 @@ function cari_kategori_gunung($keyword) {
     $keyword = htmlspecialchars($keyword);
 
     // Query pencarian berdasarkan nama_wisata dan lokasi
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE nama_wisata LIKE '%$keyword%'";
     
     return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
@@ -97,7 +97,7 @@ function cari_kategori_gunung_lokasi($keyword, $kategori) {
     $keyword = htmlspecialchars($keyword);
     $kategori = htmlspecialchars($kategori);
 
-    $query = "SELECT * FROM data_wisata 
+    $query = "SELECT * FROM data_wisataa 
               WHERE kategori = '$kategori' 
               AND lokasi LIKE '%$keyword%'";
 

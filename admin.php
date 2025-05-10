@@ -8,7 +8,7 @@ function rupiah($angka) {
 }
 
 // Query untuk mengambil data dari tabel produk, mengurutkan berdasarkan id secara menurun
-$data = mysqli_query($koneksi, 'SELECT * FROM data_wisata ORDER BY id DESC');
+$data = mysqli_query($koneksi, 'SELECT * FROM data_wisataa ORDER BY id DESC');
 
 // Mendapatkan pesan dari session
 $pesan = isset($_SESSION['pesan']) ? $_SESSION['pesan'] : NULL;
@@ -90,13 +90,12 @@ unset($_SESSION['pesan']);
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    $query = $koneksi->query("SELECT * FROM data_user");
+                    $query = $koneksi->query("SELECT * FROM data_userr");
                     while ($row = $query->fetch_assoc()):
                     ?>
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
                             </a>
                             <?php endwhile ?>
                             <!-- Dropdown - User Information -->

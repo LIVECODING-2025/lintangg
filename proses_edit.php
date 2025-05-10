@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $deskripsi = htmlspecialchars($_POST['deskripsi']);
 
     // Ambil nama gambar lama dari database
-    $wisata = mysqli_query($koneksi, "SELECT gambar FROM data_wisata WHERE id = '$id_produk'");
+    $wisata = mysqli_query($koneksi, "SELECT gambar FROM data_wisataa WHERE id = '$id_produk'");
     $result = mysqli_fetch_assoc($wisata);
     $gambar_lama = $result['gambar'];
 
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Update data wisata
-    $query = mysqli_query($koneksi, "UPDATE data_wisata SET nama_wisata = '$nama_wisata', harga = '$harga', kategori = '$kategori', lokasi = '$lokasi', deskripsi = '$deskripsi', gambar = '$gambar_baru' WHERE id = '$id_produk'");
+    $query = mysqli_query($koneksi, "UPDATE data_wisataa SET nama_wisata = '$nama_wisata', harga = '$harga', kategori = '$kategori', lokasi = '$lokasi', deskripsi = '$deskripsi', gambar = '$gambar_baru' WHERE id = '$id_produk'");
 
     if ($query) {
         $_SESSION['pesan'] = [

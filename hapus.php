@@ -8,7 +8,7 @@ if (isset($_GET['hapus'])) {
     $id = $_GET['id'];
 
     // Ambil nama file gambar dari database berdasarkan ID produk
-    $query_gambar = mysqli_query($koneksi, "SELECT gambar FROM data_wisata WHERE id = '$id'");
+    $query_gambar = mysqli_query($koneksi, "SELECT gambar FROM data_wisataa WHERE id = '$id'");
     $data = mysqli_fetch_assoc($query_gambar);
     
     if ($data) {
@@ -16,7 +16,7 @@ if (isset($_GET['hapus'])) {
         $path_gambar = "foto/" . $nama_gambar; // Folder tempat gambar disimpan
 
         // Hapus data produk dari database
-        $query = mysqli_query($koneksi, "DELETE FROM data_wisata WHERE id = '$id'");
+        $query = mysqli_query($koneksi, "DELETE FROM data_wisataa WHERE id = '$id'");
         
         if ($query) {
             // Cek apakah file gambar ada di folder sebelum dihapus

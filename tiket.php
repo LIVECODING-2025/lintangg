@@ -10,7 +10,7 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']);
 
 // Query ambil data berdasarkan id
-$query = "SELECT * FROM data_wisata WHERE id = $id";
+$query = "SELECT * FROM data_wisataa WHERE id = $id";
 $result = mysqli_query($koneksi, $query);
 
 // Cek error SQL

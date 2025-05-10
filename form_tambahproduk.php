@@ -1,7 +1,7 @@
 <?php
 include ("function.php");
 
-$data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
+$data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
 
 ?>
 
@@ -101,7 +101,7 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisata');
 
                     <!-- Nav Item - User Information -->
                     <?php
-                    $query = $koneksi->query("SELECT * FROM data_user");
+                    $query = $koneksi->query("SELECT * FROM data_userr");
                     while ($row = $query->fetch_assoc()):
                     ?>
                     <li class="nav-item dropdown no-arrow">

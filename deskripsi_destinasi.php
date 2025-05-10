@@ -5,7 +5,7 @@ include ("function.php");
 $id = $_GET['id'];
 
 // Query ambil data berdasarkan id
-$query = "SELECT * FROM data_wisata WHERE id = $id";
+$query = "SELECT * FROM data_wisataa WHERE id = $id";
 $result = mysqli_query($koneksi, $query);
 
 // Ubah hasil menjadi array asosiatif
@@ -20,7 +20,7 @@ if (isset($_POST['submit_booking'])) {
   $id = $_GET['id'] ?? null; // ID dari URL
 
   if ($nama && $tanggal_booking && $notelfon && $nama_wisata) {
-      $insert = "INSERT INTO data_user (nama, tanggal_booking, notelfon, nama_wisata) 
+      $insert = "INSERT INTO data_userr (nama, tanggal_booking, notelfon, nama_wisata) 
                  VALUES ('$nama', '$tanggal_booking', '$notelfon', '$nama_wisata')";
       if (mysqli_query($koneksi, $insert)) {
           // Redirect ke tiket.php dengan id
@@ -93,8 +93,8 @@ if (isset($_POST['submit_booking'])) {
 
 <!-- Popup -->
 <div class="popup-overlay" id="popup">
-  <button class="close-btn" onclick="closePopup()">×</button>
   <div class="popup-container">
+    <button class="close-btn" onclick="closePopup()">×</button> <!-- pindahkan ke sini -->
     <div class="popup-left">
       <h2>Pesan Wisata ini</h2>
       <p>Pesan tiket anda yang tak terlupakan hari ini! Untuk pertanyaan atau saran pribadi, jangan ragu untuk menghubungi kami.</p>
@@ -107,16 +107,17 @@ if (isset($_POST['submit_booking'])) {
       <div class="popup-right">
         <h3>Harga <strong>Rp. 30.000</strong></h3>
         <input type="text" class="form-input" name="nama" placeholder="Name" required>
-          <div class="form-row">
-            <input type="date" class="form-input" name="tanggal_booking" placeholder="Tanggal Book" required>
-            <input type="text" class="form-input" name="notelfon" placeholder="NoTelfon">
-          </div>
+        <div class="form-row">
+          <input type="date" class="form-input" name="tanggal_booking" placeholder="Tanggal Book" required>
+          <input type="text" class="form-input" name="notelfon" placeholder="NoTelfon">
+        </div>
         <input type="text" class="form-input" name="nama_wisata" placeholder="Nama Wisata" required>
         <button class="booking-btn" type="submit" name="submit_booking">Booking</button>
       </div>
     </form>
   </div>
 </div>
+
 
 <!-- Script -->
 <script>

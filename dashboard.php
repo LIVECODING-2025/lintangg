@@ -1,7 +1,7 @@
 <?php
 include ("function.php");
 
-$wisata = query("SELECT * FROM data_wisata WHERE kategori = 'Pantai'");
+$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
 
 if (isset($_POST["cari_dashboard"])) {
     $wisata = cari_dashboard($_POST["keyword"]);
