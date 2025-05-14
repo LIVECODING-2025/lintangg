@@ -12,18 +12,20 @@ function query($query) {
     return $rows;
 }
 
+// Registrasi
 function registrasi($data) {
     global $koneksi;
 
-    $username = strtolower(stripcslashes($data["username"]));  
-    $password = mysqli_real_escape_string($koneksi, $data["password"]);
-    $nama = $data["nama"];
-
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-    mysqli_query($koneksi, "INSERT INTO data_loginn (username, password,nama) VALUES ('$username','$password', '$nama')" );
-
-    return mysqli_affected_rows($koneksi);
+    $username = mysqli_real_escape_string($koneksi, $data['username']);
+    $password = mysqli_real_escape_string($koneksi, $data['password']);
+    $nama = mysqli_real_escape_string($koneksi, $data['nama']);
+    
+    // Hash password
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    
+    $query = "INSERT INTO data_login (username, password, nama) VALUES ('$username', '$password_hash', '$nama')";
+    
+    return mysqli_query($koneksi, $query);
 }
 
 function cari_dashboard($keyword) {

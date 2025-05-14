@@ -1,6 +1,12 @@
 <?php
 include ("function.php");
 
+// Pastikan user sudah login
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit;
+}
+
 $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
 
 if (isset($_POST["cari_dashboard"])) {
