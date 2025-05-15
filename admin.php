@@ -2,6 +2,11 @@
 session_start();
 include ("function.php");
 
+if (!isset($_SESSION["username"]) || $_SESSION["level"] !== 'admin') {
+    header("Location: login.php");
+    exit();
+}
+
 // Fungsi untuk format rupiah
 function rupiah($angka) {
     return 'Rp ' . number_format($angka, 0, ',', '.');
@@ -95,19 +100,20 @@ unset($_SESSION['pesan']);
                     ?>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
                             </a>
                             <?php endwhile ?>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="profile.php">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
                             <div class="dropdown-divider"></div>
                             <!-- Link to trigger the logout modal -->
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>

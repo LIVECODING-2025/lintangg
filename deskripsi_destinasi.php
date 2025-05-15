@@ -86,7 +86,7 @@ if (isset($_POST['submit_booking'])) {
                     <i class="fas fa-map-marker-alt"></i>
                     <?= $data["lokasi"]; ?>
                 </p>
-                <button class="pesan-tiket-btn" onclick="openPopup()">Pesan Tiket</button>
+                <button class="pesan-tiket-btn" style="margin-left: 250px;" onclick="openPopup()">Pesan Tiket</button>
             </div> 
           </div>
     </section>
@@ -154,7 +154,7 @@ if (isset($_POST['submit_booking'])) {
       <h2>Foto</h2>
       <hr class="divider">
       <div class="foto-masonry">
-        <img src="foto/<?= $data['gambar_deskrpsi']; ?>" alt="Foto 1">
+        <img src="foto/<?= $data['gambar_deskripsi']; ?>" alt="Foto 1">
         <img src="foto/<?= $data['gambar_deskripsi_2']; ?>" alt="Foto 2">
         <img src="foto/<?= $data['gambar_deskrpsi_3']; ?>" alt="Foto 3">
         <img src="foto/<?= $data['gambar_deskrpsi_4']; ?>" alt="Foto 4">

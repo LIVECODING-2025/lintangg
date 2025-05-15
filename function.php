@@ -12,20 +12,34 @@ function query($query) {
     return $rows;
 }
 
-// Registrasi
 function registrasi($data) {
     global $koneksi;
 
     $username = mysqli_real_escape_string($koneksi, $data['username']);
     $password = mysqli_real_escape_string($koneksi, $data['password']);
     $nama = mysqli_real_escape_string($koneksi, $data['nama']);
-    
+
+    // Cek apakah username sudah ada
+    $cek = mysqli_query($koneksi, "SELECT username FROM data_login WHERE username = '$username'");
+    if (mysqli_num_rows($cek) > 0) {
+        echo "<script>alert('Username sudah terdaftar!');</script>";
+        return false;
+    }
+
     // Hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    
+
+    // Insert ke database
     $query = "INSERT INTO data_login (username, password, nama) VALUES ('$username', '$password_hash', '$nama')";
-    
-    return mysqli_query($koneksi, $query);
+
+    if (mysqli_query($koneksi, $query)) {
+        // Registrasi sukses, redirect agar tidak insert ulang saat reload
+        header("Location: login.php");
+        exit;
+    } else {
+        echo "<script>alert('Registrasi gagal!');</script>";
+        return false;
+    }
 }
 
 function cari_dashboard($keyword) {

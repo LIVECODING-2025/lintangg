@@ -1,10 +1,10 @@
 <?php
-include ("function.php");
+session_start();
+require 'function.php';
 
-// Pastikan user sudah login
-if (!isset($_SESSION["username"])) {
+if (!isset($_SESSION["username"]) || $_SESSION["level"] !== 'user') {
     header("Location: login.php");
-    exit;
+    exit();
 }
 
 $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
@@ -50,7 +50,7 @@ if (isset($_POST["cari_dashboard"])) {
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                <button class="login-btnn">Logout</button>
+                <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
             </div>
         </form>
     </header>
