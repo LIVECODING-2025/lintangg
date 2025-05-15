@@ -1,10 +1,26 @@
 <?php
-session_Start();
-include ("function.php");
+session_start();
+include("function.php");
 
-$data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
+// Hitung total data wisata
+$queryWisata = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM data_wisataa");
+if ($queryWisata) {
+    $dataWisata = mysqli_fetch_assoc($queryWisata);
+    $totalWisata = $dataWisata['total'];
+} else {
+    $totalWisata = 0;
+}
 
+// Hitung total data pemesanan
+$queryPemesanan = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM data_userr");
+if ($queryPemesanan) {
+    $dataPemesanan = mysqli_fetch_assoc($queryPemesanan);
+    $totalPemesanan = $dataPemesanan['total'];
+} else {
+    $totalPemesanan = 0;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +41,8 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
 
     <!-- Custom styles for this template -->
     <link href="css admin/sb-admin-2.min.css" rel="stylesheet">
@@ -48,8 +66,8 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
 
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+        <li class="nav-item active">
+            <a class="nav-link" href="dashboard_admin.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -58,8 +76,8 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
         <div class="sidebar-heading">
                Tambahan
         </div>
-        <li class="nav-item active">
-            <a class="nav-link" href="form_tambahproduk.php">
+        <li class="nav-item">
+            <a class="nav-link" href="form_tambahwisata.php">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Tambah Wisata</span>
             </a>
@@ -97,7 +115,7 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                    <div class="topbar-divider d-none d-sm-block"></div>
+                    
 
                     <!-- Nav Item - User Information -->
                     <?php
@@ -107,18 +125,13 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
+                            <div class="topbar-divider d-none d-sm-block"></div>
                             <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
                         </a>
 
                         <?php endwhile ?>
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="profile.php">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                             <!-- Link to trigger the logout modal -->
                             <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -139,108 +152,65 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
                         </button>
                     </div>
                     <div class="modal-body">
-                        Pilih "Keluar" di bawah jika Anda siap mengakhiri sesi Anda saat ini.
+                        Pilih "logout" di bawah jika Anda siap mengakhiri sesi Anda saat ini.
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                         <!-- Redirect to start.php on confirmation -->
-                        <a class="btn btn-primary" href="../start.php">Logout</a>
+                        <a class="btn btn-primary" href="logout.php">Logout</a>
                     </div>
                     </div>
                 </div>
                 </div>
 
-                    </nav>
+                </nav>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <h1 class="h3 mb-2 text-gray-800">Tabel</h1><br>
+                <h1 class="h3 mb-2 text-gray-800">Dashboard</h1><br>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold" style="color: #013220;">Form</h6>
+        <h6 class="m-0 font-weight-bold" style="color: #013220;">Selamat Datang, Admin!</h6>
     </div>
-    <div class="card-body">
-        <form action="proses_tambahproduk.php" method="post" enctype="multipart/form-data">
-            <div class="row mb-3">
-                <label for="nama_wisata" class="form-label col-sm-2">Nama Wisata</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nama_wisata" name="nama_wisata" autofocus>
+
+    <div class="row">
+
+    <div class="row ps-4 pt-3">
+    <!-- Box Data Wisata -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card bg-danger text-white shadow h-100 py-2" style="margin-left: 10px;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="h5 mb-0 font-weight-bold"><?= number_format($totalWisata) ?></div>
+                    <div class="text-white-50 small">Data Wisata</div>
                 </div>
+                <i class="fas fa-coins fa-2x"></i>
             </div>
-            <div class="row mb-3">
-                <label for="harga" class="form-label col-sm-2">harga</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" id="harga" name="harga" autofocus>
+        </div>
+    </div>
+
+    <!-- Box Data Pemesanan -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card bg-warning text-white shadow h-100 py-2" style="margin-left: 10px;">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="h5 mb-0 font-weight-bold"><?= number_format($totalPemesanan) ?></div>
+                    <div class="text-white-50 small">Data Pemesanan</div>
                 </div>
+                <i class="fas fa-users fa-2x"></i>
             </div>
-            <div class="row mb-3">
-                <label for="gambar" class="form-label col-sm-2">Gambar</label>
-                <div class="col-sm-10">
-                    <input type="file" class="form-control" id="gambar" name="gambar">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label for="deskripsi" class="form-label col-sm-2">deskripsi</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="deskripsi" name="deskripsi">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label for="lokasi" class="form-label col-sm-2">Lokasi</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="lokasi" name="lokasi">
-                </div>
-            </div>
-            <div class="row mb-3">
-    <label for="kategori" class="form-label col-sm-2">Kategori</label>
-    <div class="col-sm-10">
-        <select class="form-control" id="kategori" name="kategori">
-            <option value="">Pilih Kategori</option>
-            <option value="gunung">Gunung</option>
-            <option value="air terjun">Air terjun</option>
-            <option value="pantai">Pantai</option>
-        </select>
+        </div>
     </div>
 </div>
 
-            <!-- <div class="row mb-3">
-                <label for="kategori" class="form-label col-sm-2">Kategori</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="kategori" name="kategori">
-                </div>
-            </div> -->
-            <button type="submit" class="btn" style="background-color: #013220; color: white;" name="submit">Simpan</button>
-        </form>
-    </div>
-</div>
                 </div>
                 <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
         </div>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin Ingin Logout?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Pilih "Keluar" di bawah jika Anda siap mengakhiri sesi Anda saat ini.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -58,7 +58,7 @@ $data = mysqli_fetch_assoc($result);
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-            <button class="login-btnn">Logout</button>
+            <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
         </div>
     </header>
 

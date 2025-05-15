@@ -12,6 +12,29 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
 if (isset($_POST["cari_dashboard"])) {
     $wisata = cari_dashboard($_POST["keyword"]);
 }
+
+//ulasan 
+$pesan = ""; // variabel untuk menyimpan notifikasi
+
+// Cek jika form disubmit
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan'])) {
+    $kritik = htmlspecialchars($_POST['kritik']);
+    $saran = htmlspecialchars($_POST['saran']);
+
+    $query = "INSERT INTO data_ulasan (kritik, saran) VALUES (?, ?)";
+    $stmt = $koneksi->prepare($query);
+    $stmt->bind_param("ss", $kritik, $saran);
+
+    if ($stmt->execute()) {
+        $pesan = "Komentar berhasil dikirim!";
+    } else {
+        $pesan = "Gagal menyimpan komentar: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+
+$koneksi->close();
 ?>
 
 <!DOCTYPE html>
@@ -187,11 +210,16 @@ if (isset($_POST["cari_dashboard"])) {
 
             <div class="footer-section">
                 <h3>Ulasan Anda</h3>
-                <form action="#">
-                    <input type="text" placeholder="Kritik'an Anda" required>
-                    <input type="text" placeholder="Saran Anda" required>
-                    <button type="submit">Simpan</button>
+                <form action="#" method="POST">
+                    <input type="text" name="kritik" placeholder="Kritik'an Anda" required>
+                    <input type="text" name="saran" placeholder="Saran Anda" required>
+                    <button type="submit" name="simpan">Simpan</button>
                 </form>
+                <?php if (!empty($pesan)): ?>
+                    <script>
+                        alert("<?= $pesan ?>");
+                    </script>
+                <?php endif; ?>
             </div>
         </div>
     </footer>

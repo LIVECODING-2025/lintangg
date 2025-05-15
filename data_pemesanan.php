@@ -44,7 +44,7 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
         <hr class="sidebar-divider my-0">
        
         <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="dashboard_admin.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -54,7 +54,7 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                Tambahan
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="form_tambahproduk.php">
+            <a class="nav-link" href="form_tambahwisata.php">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Tambah Wisata</span>
             </a>
@@ -86,24 +86,41 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
+                                <div class="topbar-divider d-none d-sm-block"></div>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
                             </a>
                             <?php endwhile ?>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                            aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="profile.php">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <!-- Link to trigger the logout modal -->
-                            <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <!-- Link to trigger the logout modal -->
+                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                </a>
+                            </div>
                         </li>
+                    
+                    <!-- Logout Modal -->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="logoutModalLabel">Apakah Anda Yakin Ingin Logout?</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Pilih "logout" di bawah jika Anda siap mengakhiri sesi Anda saat ini.
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                    <!-- Redirect to start.php on confirmation -->
+                                    <a class="btn btn-primary" href="logout.php">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
             </nav>
 
@@ -142,14 +159,14 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                                                 <form action="form_edit.php" method="get"
                                                       onsubmit="return confirm('Apa Anda ingin mengedit data wisata ini?');">
                                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                                    <button type="submit" name="edit" class="btn" style="background-color: #013220; color: white;">
+                                                    <button type="submit" name="edit" class="btn" style="background-color: #FFB200; color: white;">
                                                         <i class="ti ti-edit text-center"></i>
                                                     </button>
                                                 </form>
                                                 <form action="hapus.php" method="get"
                                                       onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
                                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                                                    <button type="submit" name="hapus" class="btn" style="background-color: #690B22; color: white;">
+                                                    <button type="submit" name="hapus" class="btn" style="background-color: #CB0404; color: white;">
                                                         <i class="ti ti-trash text-center"></i>
                                                     </button>
                                                 </form>
