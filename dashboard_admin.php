@@ -58,7 +58,7 @@ if ($queryPemesanan) {
 
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion custom-sidebar" id="accordionSidebar" style="background-color: #013220;">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon rotate-n-10">
                 <img src="foto/logo admin real.png" alt="Logo" style="width: 160px; height: 30px; margin-top: 10px;">
             </div>

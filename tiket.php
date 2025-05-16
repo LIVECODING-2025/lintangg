@@ -28,7 +28,7 @@ $data = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Gunung Argopuro</title>
+    <title>Tiket Piknik'in.Aja</title>
     <link rel="stylesheet" href="style.css" id="paragraf 5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -79,7 +79,7 @@ $data = mysqli_fetch_assoc($result);
                     <div id="popupTiket" class="popup-overlay">
                         <div class="popup-content">
                             <button class="btn-close" onclick="document.getElementById('popupTiket').style.display='none'">&times;</button>
-                            <h2>Tiket Kamu</h2>
+                            <h2 style="color: black;">Tiket Kamu</h2>
 
                 <!-- Gambar tiket dari database -->
                             <img src="foto/<?= $data["tiket"]; ?>" alt="Tiket" id="gambarTiket">
@@ -118,7 +118,7 @@ $data = mysqli_fetch_assoc($result);
       <h2>Foto</h2>
       <hr class="divider">
       <div class="foto-masonry">
-        <img src="foto/<?= $data['gambar_deskrpsi']; ?>" alt="Foto 1">
+        <img src="foto/<?= $data['gambar_deskripsi']; ?>" alt="Foto 1">
         <img src="foto/<?= $data['gambar_deskripsi_2']; ?>" alt="Foto 2">
         <img src="foto/<?= $data['gambar_deskrpsi_3']; ?>" alt="Foto 3">
         <img src="foto/<?= $data['gambar_deskrpsi_4']; ?>" alt="Foto 4">

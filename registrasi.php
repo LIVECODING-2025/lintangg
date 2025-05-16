@@ -19,7 +19,7 @@ if ( isset($_POST["register"] )) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registrasi Wisata Jatim</title>
+  <title>Registrasi Piknik'in.Aja</title>
   <link rel="stylesheet" href="style2.css" id="paragraf 1">
 </head>
 <body>

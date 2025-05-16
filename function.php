@@ -5,9 +5,14 @@ $koneksi = mysqli_connect("localhost","root","","wisata");
 function query($query) {
     global $koneksi;
     $result = mysqli_query($koneksi, $query);
+
+    if (!$result) {
+        die("Query Error: " . mysqli_error($koneksi));
+    }
+
     $rows = [];
     while( $row = mysqli_fetch_assoc($result) ) {
-        $rows [] = $row;
+        $rows[] = $row;
     }
     return $rows;
 }

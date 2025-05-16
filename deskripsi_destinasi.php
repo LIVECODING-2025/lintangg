@@ -63,7 +63,7 @@ $koneksi->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deskripsi Destinasi</title>
+    <title>Deskripsi Destinasi Piknik'in.Aja</title>
     <link rel="stylesheet" href="style.css" id="paragraf 5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -126,13 +126,13 @@ $koneksi->close();
     </div>
     <form method="POST" action="">
       <div class="popup-right">
-        <h3>Harga <strong>Rp. 30.000</strong></h3>
+        <h3>Harga <strong>Rp<?= number_format($data["harga"] , 0, ',', '.'); ?></strong></h3>
         <input type="text" class="form-input" name="nama" placeholder="Name" required>
         <div class="form-row">
           <input type="date" class="form-input" name="tanggal_booking" placeholder="Tanggal Book" required>
           <input type="text" class="form-input" name="notelfon" placeholder="NoTelfon">
         </div>
-        <input type="text" class="form-input" name="nama_wisata" placeholder="Nama Wisata" required>
+        <input type="text" class="form-input" name="nama_wisata" placeholder="Nama Wisata" required value="<?= $data['nama_wisata'] ?>">
         <button class="booking-btn" type="submit" name="submit_booking">Booking</button>
       </div>
     </form>

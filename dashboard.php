@@ -2,12 +2,12 @@
 session_start();
 require 'function.php';
 
-if (!isset($_SESSION["username"]) || $_SESSION["level"] !== 'user') {
+if (!isset($_SESSION['username']) || $_SESSION['level'] !== 'user') {
     header("Location: login.php");
-    exit();
+    exit;
 }
 
-$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
+$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'pantai'");
 
 if (isset($_POST["cari_dashboard"])) {
     $wisata = cari_dashboard($_POST["keyword"]);
@@ -42,7 +42,7 @@ $koneksi->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard Piknik'in.Aja</title>
     <link rel="stylesheet" href="style2.css" id="paragraf 3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>

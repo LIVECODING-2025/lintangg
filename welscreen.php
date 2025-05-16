@@ -10,7 +10,7 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome Screen Piknik'in.Aja</title>
     <link rel="stylesheet" href="style2.css" id="paragraf 3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -40,7 +40,7 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-            <button class="login-btnn">Login</button>
+            <button class="login-btnn"><a href="login.php" style="color: white; text-decoration: none;">Login</a></button>
         </div>
     </header>
 
@@ -49,7 +49,7 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     <div class="hero-content">
             <p class="subtitle">Explore Jatim</p>
             <h1>Nikmatilah Alam Yang Indah<br>Dan Romantis</h1>
-            <button class="explore-btn">Lebih Lanjut</button>
+            <button class="explore-btn"><a href="#kategori" style="text-decoration: none; color: #092e23;">Lebih Lanjut</a></button>
         </div>
     </section>
 
@@ -74,9 +74,9 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     <section class="explore-section">
         <div class="explore-container">
             <div class="explore-images">
-                <img src="foto/gambar 2.png" alt="Pantai">
-                <img src="foto/GUNUNG BROMO 1.png" alt="Gunung">
-                <img src="foto/gambar 3.png" alt="Gunung Berapi">
+                <img src="foto/explore wisata 2.jpeg" alt="Pantai">
+                <img src="foto/explore wisata 1.jpeg" alt="Gunung">
+                <img src="foto/explore wisata 3.jpeg" alt="Gunung">
             </div>
             <div class="explore-text">
             <h2>EXPLORE WISATA JATIM</h2>
@@ -90,25 +90,25 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     </section>
 
     <!-- Kategori Wisata -->
-    <section class="kategori-wisata">
+    <section class="kategori-wisata" id="kategori">
         <h2>Kategori Wisata</h2>
         <div class="card-container">
             <div class="card">
-            <img src="foto/kategori pantai.png" alt="Wisata Pantai">
+            <img src="foto/kategori pntai baru.jpeg" alt="Wisata Pantai">
             <div class="card-text">
                 <h3>Wisata Pantai</h3>
                 <a href="login.php" class="btn-detail">Detail</a>
             </div>
         </div>
         <div class="card">
-            <img src="foto/kategori air terjun.png" alt="Wisata Air Terjun">
+            <img src="foto/kategori air terjun baru.jpeg" alt="Wisata Air Terjun">
             <div class="card-text">
                 <h3>Wisata Air Terjun</h3>
                 <a href="login.php" class="btn-detail">Detail</a>
             </div>
         </div>
         <div class="card">
-            <img src="foto/kategori gunung.png" alt="Wisata Gunung">
+            <img src="foto/kategori gunung baru.jpeg" alt="Wisata Gunung">
             <div class="card-text">
                 <h3>Wisata Gunung</h3>
                 <a href="login.php" class="btn-detail">Detail</a>
@@ -129,9 +129,9 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
                 </p>
             </div>
             <div class="wisata-images">
-                <img src="foto/gambar 1.png" alt="Gunung">
-                <img src="foto/gambar 2 (1).png" alt="Pantai">
-                <img src="foto/gambar 3 (1).png" alt="Air Terjun">
+                <img src="foto/wisata jawa timur 1.jpeg" alt="Gunung">
+                <img src="foto/wisata jawa timur 2.jpeg" alt="Pantai">
+                <img src="foto/wisata jawa timur 3.jpeg" alt="Air Terjun">
             </div>
         </div>
     </section>
