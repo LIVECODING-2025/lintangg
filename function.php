@@ -24,6 +24,12 @@ function registrasi($data) {
     $password = mysqli_real_escape_string($koneksi, $data['password']);
     $nama = mysqli_real_escape_string($koneksi, $data['nama']);
 
+    // Tolak username yang mengandung kata "admin" (case-insensitive)
+    if (preg_match('/admin/i', $username)) {
+        echo "<script>alert('Registrasi ditolak! Username tidak boleh mengandung kata \"admin\".');</script>";
+        return false;
+    }
+
     // Cek apakah username sudah ada
     $cek = mysqli_query($koneksi, "SELECT username FROM data_login WHERE username = '$username'");
     if (mysqli_num_rows($cek) > 0) {
