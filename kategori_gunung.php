@@ -44,7 +44,7 @@ $koneksi->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Destinasi Piknik'in.Aja</title>
-  <link rel="stylesheet" href="style2.css" id="paragraf 5">
+  <link rel="stylesheet" href="style4.css" id="paragraf 5">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -102,6 +102,24 @@ $koneksi->close();
             </div>
         </section>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const dropdown = document.querySelector('.dropdownn');
+        const button = document.querySelector('.dropbtnn');
+
+        button.addEventListener('click', function (e) {
+            e.stopPropagation(); // Hindari penutupan karena klik
+        dropdown.classList.toggle('active');
+        });
+
+    // Tutup dropdown saat klik di luar
+        document.addEventListener('click', function (e) {
+            if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+        }
+        });
+    });
+    </script>
 
 <!-- Destinasi -->
 <section class="top-destination">

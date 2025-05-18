@@ -43,7 +43,7 @@ $koneksi->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Piknik'in.Aja</title>
-    <link rel="stylesheet" href="style2.css" id="paragraf 3">
+    <link rel="stylesheet" href="style3.css" id="paragraf 3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 </head>
@@ -52,12 +52,12 @@ $koneksi->close();
     <header class="navbar">
         <div class="logo">Piknik'in.Aja</div>
         <nav class="nav-links">
-            <a href="#" style="font-weight: bold;">Dashboard</a>
+            <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
             
             <div class="dropdown">
                 <button class="dropbtn" style="font-weight: 400;">Destinasi ▼</button>
                 <div class="dropdown-content">
-                    <a href="kategori_pantai.php">Pantai</a>
+                    <a href="#">Pantai</a>
                     <a href="kategori_gunung.php">Gunung</a>
                     <a href="kategori_airterjun.php">Air Terjun</a>
                 </div>
@@ -66,26 +66,30 @@ $koneksi->close();
             <a href="tentang_kami.php">Tentang Kami</a>
         </nav>
         <form action="" method="POST">
-            <div class="search-loginn">
-                <div class="search-boxxx">
-                    <input type="text" placeholder="Search" name="keyword">
-                    <button class="search-btnnn" name="cari_dashboard">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-                <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
+        <div class="search-loginn">
+            <div class="search-boxxx">
+                <input type="text" placeholder="Search" name="keyword">
+                <button class="search-btnnn" name="cari_kategori_pantai">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
+            <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
+        </div>
         </form>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-    <div class="hero-content">
+        <div class="hero-content">
             <p class="subtitle">Explore Jatim</p>
-            <h1>Nikmatilah Alam Yang Indah<br>Dan Romantis</h1>
-            <button class="explore-btn"><a href="#kategori" style="color: #092e23; text-decoration: none;">Lebih Lanjut</a></button>
+            <h1>Nikmatilah Alam Yang Indah Dan Romantis</h1>
+            <button class="explore-btn">
+                <a href="#kategori" style="color: #013220; text-decoration: none;">Lebih Lanjut</a>
+            </button>
         </div>
     </section>
+
+
 
     <!-- Stats Section -->
     <section class="stats">
@@ -104,24 +108,25 @@ $koneksi->close();
         </div>
     </section>
 
-    <!-- Explore Selection -->
-    <section class="explore-section">
-        <div class="explore-container">
-            <div class="explore-images">
-                <img src="foto/explore wisata 2.jpeg" alt="Pantai">
-                <img src="foto/explore wisata 1.jpeg" alt="Gunung">
-                <img src="foto/explore wisata 3.jpeg" alt="Gunung Berapi">
-            </div>
-            <div class="explore-text">
-            <h2>EXPLORE WISATA JATIM</h2>
-            <p>
-                Kami Mengenalkan wisata yang unik dan berkesan, menyediakan pengalaman yang kaya di Jawa Timur yang indah.
-                Dengan berkomitmen untuk menghadirkan perjalanan yang luar biasa, aman, dan mengasyikkan, membantu Anda
-                menjelajahi keindahan wisata di Jawa Timur.
-            </p>
-            </div>
-        </div>
-    </section>
+    <!-- Explore Section -->
+<section class="explore-section">
+  <div class="explore-container">
+    <div class="explore-text">
+      <h2>EXPLORE WISATA JATIM</h2>
+      <p>
+        Kami Mengenalkan wisata yang unik dan berkesan, menyediakan pengalaman yang kaya di Jawa Timur yang indah.
+        Dengan berkomitmen untuk menghadirkan perjalanan yang luar biasa, aman, dan mengasyikkan, membantu Anda
+        menjelajahi keindahan wisata di Jawa Timur.
+      </p>
+    </div>
+    <div class="explore-images">
+      <img src="foto/explore wisata 2.jpeg" alt="Pantai">
+      <img src="foto/explore wisata 1.jpeg" alt="Gunung">
+      <img src="foto/explore wisata 3.jpeg" alt="Gunung Berapi">
+    </div>
+  </div>
+</section>
+
 
     <!-- Kategori Wisata -->
     <section class="kategori-wisata" id="kategori">

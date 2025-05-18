@@ -1,0 +1,689 @@
+/*paragraf 3*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: #fff;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 22px;
+  color: #013220;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #013220;
+  text-decoration: none;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #013220;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 150px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  top: 30px;
+  left: 0;
+  z-index: 999;
+}
+
+.dropdown-content a {
+  color: #013220;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Search and Login */
+.search-loginn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-boxx {
+  display: flex;
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.search-boxx input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 5px;
+}
+
+.search-btnn {
+  background: #013220;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login-btn {
+  background: #013220;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 90vh;
+  background: url('foto/halaman bg dashboard.jpeg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 5%;
+  color: white;
+}
+
+.hero-content {
+  color: white;
+  max-width: 850px;
+  padding-left: 100px;
+}
+
+.subtitle {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.hero-content h1 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.explore-btn {
+  padding: 10px 20px;
+  border: none;
+  background: #ffff;
+  color: #013220;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.explore-btn:hover {
+  background: #D9D9D9;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .subtitle {
+    font-size: 10px;
+    padding-top: 80px;
+  }
+
+  .hero-content h1 {
+    font-size: 15px;
+  }
+
+  .explore-btn {
+    font-size: 14px;
+    padding: 10px 18px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .explore-btn {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+/* Statistic Section */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 250px;
+  padding: 40px 0;
+  background: #D9D9D9;
+  flex-wrap: wrap;
+}
+
+.stat-item h2 {
+  font-size: 2rem;
+  color: #000;
+}
+
+.stat-item p {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+}
+
+/* Tablet View (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .stats {
+    gap: 100px;
+  }
+}
+
+/* Mobile View (max-width: 768px) */
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .stat-item h3 {
+    font-size: 20px;
+  }
+
+  .stat-item p {
+    font-size: 14px;
+  }
+}
+
+/* Explore Section */
+.explore-section {
+  padding: 60px 20px;
+  background: #f9f9f9;
+}
+
+.explore-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.explore-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.explore-images img {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.explore-text {
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.explore-text h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.explore-text p {
+  font-size: 16px;
+  text-align: justify;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 600px) {
+  .explore-images {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .explore-images img {
+    width: 120px;
+    height: 120px;
+    display: flex;
+  }
+
+  .explore-text h2 {
+    font-size: 20px;
+  }
+
+  .explore-text p {
+    font-size: 14px;
+  }
+}
+
+/* Kategori Wisata */
+.kategori-wisata {
+  padding: 40px 150px;
+  background: #D9D9D9;
+}
+
+.kategori-wisata h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 120px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #013220;
+}
+
+.card-text h3 {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.btn-detail {
+  display: inline-block;
+  background-color: white;
+  color: #013220;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .kategori-wisata {
+    padding: 30px 40px;
+  }
+
+  .card-container {
+    justify-content: center;
+  }
+
+  .card {
+    width: 45%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .kategori-wisata {
+    padding: 30px 20px;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .card-text {
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .card-text h3 {
+    font-size: 18px;
+  }
+
+  .btn-detail {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* Extra Small */
+@media (max-width: 480px) {
+  .kategori-wisata h2 {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .card-text h3 {
+    font-size: 16px;
+  }
+
+  .btn-detail {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Wisata Jawa Timur */
+.wisata-jatim {
+  padding: 60px 20px;
+  background: #f9f9f9;
+}
+
+.container-wisata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.wisata-text {
+  flex: 1 1 400px;
+}
+
+.wisata-text h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.wisata-text p {
+  font-size: 16px;
+  text-align: justify;
+  color: #333;
+  line-height: 1.8;
+}
+
+.wisata-images {
+  flex: 1 1 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wisata-images img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Top Destination */
+.top-destinationn {
+  padding: 40px 150px;
+  background: #D9D9D9;
+}
+
+.top-destinationn h2 {
+  text-align: left;
+}
+
+.top-listt {
+  display: flex;
+  gap: 180px;
+  padding: 0px 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}     
+
+.kategori {
+  padding: 40px 150px;
+  background: #D9D9D9;
+}
+
+.kategori-list {
+  display: flex;
+  gap: 180px;
+  padding: 0px 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.kategori-itemm {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.kategori-itemm img {
+  width: 100%;
+}
+
+.kategori-itemm button {
+  margin: 10px;
+  padding: 8px 16px;
+  background: #0A3D2C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.kategori-itemm a {
+text-decoration: none;
+color: white;
+}
+
+@media (max-width: 768px) {
+  .top-destinationn,
+  .kategori {
+    padding: 20px;
+  }
+
+  .top-listt,
+  .kategori-list {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    align-items: center;
+  }
+
+  .kategori-itemm {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .kategori-itemm button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #0e4534;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.footer-section p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ccc;
+}
+
+/* Form */
+.footer-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: #013220;
+}
+
+.footer-section input::placeholder {
+  color: black;
+}
+
+.footer-section button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: #013220;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.footer-section button:hover {
+  background: #3D8D7A;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  }
+
+  .footer-section {
+      margin-bottom: 20px;
+  }
+}

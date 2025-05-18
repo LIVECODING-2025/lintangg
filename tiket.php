@@ -79,7 +79,7 @@ $data = mysqli_fetch_assoc($result);
                     <div id="popupTiket" class="popup-overlay">
                         <div class="popup-content">
                             <button class="btn-close" onclick="document.getElementById('popupTiket').style.display='none'">&times;</button>
-                            <h2 style="color: black;">Tiket Kamu</h2>
+                            <h4 style="color: black;">Tiket Kamu</h4>
 
                 <!-- Gambar tiket dari database -->
                             <img src="foto/<?= $data["tiket"]; ?>" alt="Tiket" id="gambarTiket">
