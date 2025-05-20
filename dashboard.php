@@ -38,47 +38,52 @@ $koneksi->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Piknik'in.Aja</title>
-    <link rel="stylesheet" href="style3.css" id="paragraf 3">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
+  <meta charset="UTF-8">
+  <title>Responsive Navbar Dropdown</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">Piknik'in.Aja</div>
-        <nav class="nav-links">
-            <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
-            
-            <div class="dropdown">
-                <button class="dropbtn" style="font-weight: 400;">Destinasi ▼</button>
-                <div class="dropdown-content">
-                    <a href="#">Pantai</a>
-                    <a href="kategori_gunung.php">Gunung</a>
-                    <a href="kategori_airterjun.php">Air Terjun</a>
-                </div>
-            </div>
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="logo">Piknik'in.Aja</div>
 
-            <a href="tentang_kami.php">Tentang Kami</a>
-        </nav>
-        <form action="" method="POST">
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search" name="keyword">
-                <button class="search-btnnn" name="cari_kategori_pantai">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
-        </div>
-        </form>
-    </header>
+  <!-- Checkbox Toggle untuk mobile menu -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-    <!-- Hero Section -->
+  <!-- Navigation Menu -->
+  <nav class="nav-links">
+    <a href="dashboard.php" class="active">Dashboard</a>
+
+    <div class="dropdown">
+      <button class="dropbtn">Destinasi ▼</button>
+      <div class="dropdown-content">
+        <a href="kategori_pantai.php">Pantai</a>
+        <a href="kategori_gunung.php">Gunung</a>
+        <a href="kategori_airterjun.php">Air Terjun</a>
+      </div>
+    </div>
+
+    <a href="tentang_kami.php">Tentang Kami</a>
+  </nav>
+
+  <form action="" method="POST" class="search-login">
+    <div class="search-box">
+      <input type="text" placeholder="Search" name="keyword" />
+      <button class="search-btn" name="cari_kategori_pantai">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <button class="logout-btn">
+      <a href="logout.php">Logout</a>
+    </button>
+  </form>
+</header>
+
+<!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <p class="subtitle">Explore Jatim</p>

@@ -29,38 +29,53 @@ $data = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiket Piknik'in.Aja</title>
-    <link rel="stylesheet" href="style.css" id="paragraf 5">
+    <link rel="stylesheet" href="css user/style1.css" id="paragraf 5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-
-<!-- Navbar -->
+<!-- Navbar Start -->
 <header class="navbar">
-        <div class="logo">Piknik'in.Aja</div>
-        <nav class="nav-links">
-            <a href="dashboard.php">Dashboard</a>
-            
-            <div class="dropdown">
-                <button class="dropbtn">Destinasi ▼</button>
-                <div class="dropdown-content">
-                    <a href="kategori_pantai.php">Pantai</a>
-                    <a href="kategori_gunung.php">Gunung</a>
-                    <a href="kategori_airterjun.php">Air Terjun</a>
-                </div>
-            </div>
+  <div class="logo">Piknik'in.Aja</div>
 
-            <a href="tentang_kami.php">Tentang Kami</a>
-        </nav>
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search">
-                <button class="search-btnnn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
-        </div>
-    </header>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+  <!-- Bagian tengah menu -->
+  <div class="nav-center">
+    <nav class="nav-links">
+      <a href="dashboard.php">Dashboard</a>
+
+      <div class="dropdown">
+  <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle" hidden />
+  <label for="dropdown-toggle" class="dropbtn" style="font-weight: bold;">Destinasi ▼</label>
+  <div class="dropdown-content">
+    <a href="kategori_pantai.php">Pantai</a>
+    <a href="kategori_gunung.php">Gunung</a>
+    <a href="kategori_airterjun.php">Air Terjun</a>
+  </div>
+</div>
+
+
+
+      <a href="tentang_kami.php">Tentang Kami</a>
+    </nav>
+  </div>
+
+  <!-- Bagian kanan: search & logout -->
+  <form action="" method="POST" class="search-login">
+    <div class="search-boxx">
+      <input type="text" placeholder="Search" name="keyword" style="width: 190px;"/>
+      <button class="search-btn" name="cari_kategori_pantai">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <button class="logout-btn">
+      <a href="logout.php" style="text-decoration: none;">Logout</a>
+    </button>
+  </form>
+</header>
+
+<!-- Navbar End -->
 
 <!-- Header Hero -->
     <section class="herrlo">

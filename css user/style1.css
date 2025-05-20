@@ -11,155 +11,296 @@ body {
     background: #fff;
 }
 
-/* Navbar */
+/* ========== NAVBAR ========== */
 .navbar {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 15px 70px;
   background: white;
   border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
   z-index: 1000;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  gap: 10px;
 }
 
-/* Logo */
 .logo {
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 22px;
   color: #013220;
-  white-space: nowrap;
 }
 
-/* Nav Links */
+.nav-center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-links {
   display: flex;
+  gap: 40px;
   align-items: center;
-  gap: 20px;
-  white-space: nowrap;
 }
 
 .nav-links a {
   color: #013220;
   text-decoration: none;
-  font-size: 14px;
+  font-weight: 400;
 }
 
-/* Dropdown */
+.nav-links a.active {
+  font-weight: 700;
+}
+
+/* ========== DROPDOWN ========== */
 .dropdown {
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown .dropdown-toggle {
+  display: none;
 }
 
 .dropbtn {
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   color: #013220;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
-/* Dropdown content tetap tampil jika dibutuhkan */
 .dropdown-content {
   display: none;
   position: absolute;
   background: white;
   min-width: 150px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  top: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  top: 100%;
   left: 0;
   z-index: 999;
+  flex-direction: column;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: flex;
 }
 
 .dropdown-content a {
   color: #013220;
   padding: 10px 15px;
   text-decoration: none;
-  display: block;
   font-size: 14px;
+  width: 100%;
 }
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-/* Search and Login */
-.search-loginn {
+/* ========== FORM AREA ========== */
+.search-login {
   display: flex;
   align-items: center;
-  gap: 8px;
-  white-space: nowrap;
+  gap: 10px;
 }
 
-.search-container {
+.search-boxx {
   display: flex;
   align-items: center;
-  gap: 5px;
-  background-color: #f2f2f2;
-  padding: 4px 8px;
+  background: #f0f0f0;
   border-radius: 10px;
+  padding: 5px 10px;
 }
 
-.search-container input {
+.search-boxx input {
   border: none;
   background: transparent;
   outline: none;
   padding: 5px;
-  width: 100px;
-  font-size: 12px;
+  width: 150px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.search-btnnn i {
-  font-size: 14px;
-  color: #0A3D2C;
-}
-
-/* Login Button */
-.login-btnn {
-  background: #0A3D2C;
-  color: white;
+.search-btn {
+  background: none;
   border: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
+  color: #013220;
+  font-size: 16px;
   cursor: pointer;
-  white-space: nowrap;
 }
 
-/* Responsive tweaks */
+.logout-btn {
+  background: #013220;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.logout-btn a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  text-align: center;
+}
+
+/* ========== HAMBURGER ========== */
+.menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #013220;
+  margin-top: -37px;
+}
+
+/* ========== RESPONSIVE NAVBAR ========== */
 @media (max-width: 768px) {
   .navbar {
-    padding: 10px;
-    overflow-x: auto;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .menu-icon {
+    display: block;
+    align-self: flex-end;
+  }
+
+  .nav-center {
+    width: 100%;
+    order: 2;
   }
 
   .nav-links {
-    gap: 10px;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
   }
 
-  .search-container input {
-    width: 80px;
+  .menu-toggle:checked ~ .menu-icon + .nav-center .nav-links {
+    display: flex;
+  }
+
+  .nav-links a,
+  .dropbtn {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+  }
+
+  .dropbtn label {
+    margin-left: -150px;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: static;
+    box-shadow: none;
+    background: #f8f8f8;
+    width: 100%;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  .search-login {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 15px;
+    margin-top: 10px;
+    order: 3;
+  }
+
+  #menu-toggle:checked ~ .search-login {
+    display: flex;
+  }
+
+  .search-boxx input {
+    width: 100%;
+  }
+
+  .search-btn i {
+    margin-left: 100px;
+  }
+
+  .logout-btn {
+    width: 100%;
+    font-size: 16px;
+    height: 45px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+
+/* Utility classes */
+.desktop-only {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-content {
+    display: none;
+    position: relative; /* sebelumnya: static */
+    top: 0; /* reset top */
+    left: 0;
+    box-shadow: none;
+    background: #f8f8f8;
+    width: 100%;
+    padding: 0;
+    border-left: none;
+    border-top: 1px solid #ccc;
+  }
+
+  .dropdown-content a {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: none; /* Tetap disable hover di mobile */
+  }
+
+  .dropdown-toggle:checked ~ .dropdown-content {
+    display: flex;
+    flex-direction: column;
   }
 
   .dropbtn {
-    font-size: 13px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
   }
 }
-  
+
 /* Hero Section */
 .herrlo {
     position: relative;
@@ -220,7 +361,7 @@ body {
   }
 
   .herrlo-content {
-    padding-top: 100px; /* Menurunkan posisi tulisan */
+    margin-top: 80px; /* Menurunkan posisi tulisan */
   }
 
   .judul {
@@ -243,7 +384,7 @@ body {
   }
 
   .herrlo-content {
-    padding-top: 120px; /* Tambahan turun lebih jauh untuk HP */
+    padding-top: -80px; /* Tambahan turun lebih jauh untuk HP */
   }
 
   .judul {

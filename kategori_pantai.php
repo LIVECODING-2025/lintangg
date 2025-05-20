@@ -43,40 +43,67 @@ $koneksi->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Destinasi Piknik'in.Aja</title>
-  <link rel="stylesheet" href="style4.css" id="paragraf 4">
+  <link rel="stylesheet" href="css user/style6.css" id="paragraf 4">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+<!-- Navbar Start -->
+<header class="navbar">
+  <div class="logo">Piknik'in.Aja</div>
 
-<!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">Piknik'in.Aja</div>
-        <nav class="nav-links">
-            <a href="dashboard.php">Dashboard</a>
-            
-            <div class="dropdown">
-                <button class="dropbtn">Destinasi ▼</button>
-                <div class="dropdown-content">
-                    <a href="#">Pantai</a>
-                    <a href="kategori_gunung.php">Gunung</a>
-                    <a href="kategori_airterjun.php">Air Terjun</a>
-                </div>
-            </div>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-            <a href="tentang_kami.php">Tentang Kami</a>
-        </nav>
-        <form action="" method="POST">
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search" name="keyword">
-                <button class="search-btnnn" name="cari_kategori_pantai">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            <button class="login-btnn"><a href="logout.php" style="color: white; text-decoration: none;">Logout</a></button>
-        </div>
-        </form>
-    </header>
+  <!-- Bagian tengah menu -->
+  <div class="nav-center">
+    <nav class="nav-links">
+      <a href="dashboard.php">Dashboard</a>
+
+      <div class="dropdown">
+  <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle" hidden />
+  <label for="dropdown-toggle" class="dropbtn" style="font-weight: bold;">Destinasi ▼</label>
+  <div class="dropdown-content">
+    <a href="kategori_pantai.php">Pantai</a>
+    <a href="kategori_gunung.php">Gunung</a>
+    <a href="kategori_airterjun.php">Air Terjun</a>
+  </div>
+</div>
+
+
+
+      <a href="tentang_kami.php">Tentang Kami</a>
+    </nav>
+  </div>
+
+  <!-- Bagian kanan: search & logout -->
+  <form action="" method="POST" class="search-login">
+    <div class="search-boxx">
+      <input type="text" placeholder="Search" name="keyword" style="width: 190px;"/>
+      <button class="search-btn" name="cari_kategori_pantai">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <button class="logout-btn">
+      <a href="logout.php" style="text-decoration: none;">Logout</a>
+    </button>
+  </form>
+</header>
+
+<!-- Navbar End -->
+
+  <!-- Search & Logout for desktop -->
+  <form action="" method="POST" class="search-login desktop-only">
+    <div class="search-box">
+      <input type="text" placeholder="Search" name="keyword" />
+      <button class="search-btn" name="cari_kategori_pantai">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <button class="logout-btn">
+      <a href="logout.php">Logout</a>
+    </button>
+  </form>
+</header>
 
 <!-- Hero Section -->
     <section class="heroo">
@@ -90,7 +117,7 @@ $koneksi->close();
             <i class="fas fa-map-marker-alt"></i>
             <input type="text" placeholder="kemana kamu pergi?" name="keyword">
             <input type="hidden" name="kategori" value="pantai"> <!-- Ganti sesuai kategori -->
-            <button class="search-btn" name="cari_kategori_pantai_lokasi">Search</button>
+            <button class="search-btnn" name="cari_kategori_pantai_lokasi">Search</button>
             <div class="dropdownn">
                 <button class="dropbtnn">All Categories</button>
                 <div class="dropdown-contentt">
@@ -104,7 +131,7 @@ $koneksi->close();
 
 <!-- Destinasi -->
     <section class="top-destination">
-        <h2>Destinasi Explore Jawa Timur</h2>
+        <h2 style="margin-left: -20px;">Destinasi Explore Jawa Timur</h2>
         <div class="top-list">
         <?php foreach( $wisata as $row) : ?>
             <div class="kategori-item">
