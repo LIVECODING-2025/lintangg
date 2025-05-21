@@ -29,53 +29,48 @@ $data = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiket Piknik'in.Aja</title>
-    <link rel="stylesheet" href="css user/style1.css" id="paragraf 5">
+    <link rel="stylesheet" href="style1.css" id="paragraf 5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-<!-- Navbar Start -->
-<header class="navbar">
-  <div class="logo">Piknik'in.Aja</div>
+<nav>
+    <div class="logo">Piknik’In.Aja</div>
 
-  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <input type="checkbox" id="toggle-menu">
+    <label for="toggle-menu" class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
 
-  <!-- Bagian tengah menu -->
-  <div class="nav-center">
-    <nav class="nav-links">
+    <div class="nav-links">
       <a href="dashboard.php">Dashboard</a>
 
+      <!-- Dropdown Destinasi -->
       <div class="dropdown">
-  <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle" hidden />
-  <label for="dropdown-toggle" class="dropbtn" style="font-weight: bold;">Destinasi ▼</label>
-  <div class="dropdown-content">
-    <a href="kategori_pantai.php">Pantai</a>
-    <a href="kategori_gunung.php">Gunung</a>
-    <a href="kategori_airterjun.php">Air Terjun</a>
-  </div>
-</div>
-
-
+        <label for="drop-destinasi" style="font-weight: bold;">Destinasi</label>
+        <input type="checkbox" id="drop-destinasi">
+        <div class="dropdown-content">
+          <a href="kategori_pantai.php">Pantai</a>
+          <a href="kategori_gunung.php">Gunung</a>
+          <a href="kategori_airterjun.php">AirTerjun</a>
+        </div>
+      </div>
 
       <a href="tentang_kami.php">Tentang Kami</a>
-    </nav>
-  </div>
-
-  <!-- Bagian kanan: search & logout -->
-  <form action="" method="POST" class="search-login">
-    <div class="search-boxx">
-      <input type="text" placeholder="Search" name="keyword" style="width: 190px;"/>
-      <button class="search-btn" name="cari_kategori_pantai">
-        <i class="fas fa-search"></i>
-      </button>
     </div>
-    <button class="logout-btn">
-      <a href="logout.php" style="text-decoration: none;">Logout</a>
-    </button>
-  </form>
-</header>
 
-<!-- Navbar End -->
+    <div class="search-login">
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </div>
+        <button class="login-btn"><a href="logout.php" style="text-decoration: none; color:white;">Logout</a></button>
+    </div>
+  </nav>
 
 <!-- Header Hero -->
     <section class="herrlo">

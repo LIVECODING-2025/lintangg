@@ -7,7 +7,7 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] !== 'user') {
     exit;
 }
 
-$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'pantai'");
+$wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
 
 if (isset($_POST["cari_dashboard"])) {
     $wisata = cari_dashboard($_POST["keyword"]);
@@ -41,49 +41,51 @@ $koneksi->close();
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Responsive Navbar Dropdown</title>
-  <link rel="stylesheet" href="dashboard.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css user/style.css">
+  <title>Dashboard Piknik'in.Aja</title>
 </head>
 <body>
-  <!-- Navbar -->
-<header class="navbar">
-  <div class="logo">Piknik'in.Aja</div>
+  <nav>
+    <div class="logo">Piknik’In.Aja</div>
 
-  <!-- Checkbox Toggle untuk mobile menu -->
-  <input type="checkbox" id="menu-toggle" class="menu-toggle">
-  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    <input type="checkbox" id="toggle-menu">
+    <label for="toggle-menu" class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
 
-  <!-- Navigation Menu -->
-  <nav class="nav-links">
-    <a href="dashboard.php" class="active">Dashboard</a>
+    <div class="nav-links">
+      <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
 
-    <div class="dropdown">
-      <button class="dropbtn">Destinasi ▼</button>
-      <div class="dropdown-content">
-        <a href="kategori_pantai.php">Pantai</a>
-        <a href="kategori_gunung.php">Gunung</a>
-        <a href="kategori_airterjun.php">Air Terjun</a>
+      <!-- Dropdown Destinasi -->
+      <div class="dropdown">
+        <label for="drop-destinasi">Destinasi</label>
+        <input type="checkbox" id="drop-destinasi">
+        <div class="dropdown-content">
+          <a href="kategori_pantai.php">Pantai</a>
+          <a href="kategori_gunung.php">Gunung</a>
+          <a href="kategori_airterjun.php">AirTerjun</a>
+        </div>
       </div>
+
+      <a href="tentang_kami.php">Tentang Kami</a>
     </div>
 
-    <a href="tentang_kami.php">Tentang Kami</a>
+    <div class="search-login">
+        <div class="search-box">
+            <input type="text" placeholder="Search">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </div>
+        <button class="login-btn"><a href="logout.php" style="text-decoration: none; color:white;">Logout</a></button>
+    </div>
   </nav>
 
-  <form action="" method="POST" class="search-login">
-    <div class="search-box">
-      <input type="text" placeholder="Search" name="keyword" />
-      <button class="search-btn" name="cari_kategori_pantai">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
-    <button class="logout-btn">
-      <a href="logout.php">Logout</a>
-    </button>
-  </form>
-</header>
-
-<!-- Hero Section -->
+  <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <p class="subtitle">Explore Jatim</p>
@@ -95,8 +97,7 @@ $koneksi->close();
     </section>
 
 
-
-    <!-- Stats Section -->
+  <!-- Stats Section -->
     <section class="stats">
         <div class="stat-item">
             <h2>+100</h2>
@@ -233,6 +234,5 @@ $koneksi->close();
             </div>
         </div>
     </footer>
-
 </body>
 </html>

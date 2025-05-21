@@ -80,25 +80,24 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <ul class="navbar-nav ml-auto">
                     <?php
-                    $query = $koneksi->query("SELECT * FROM data_userr");
-                    while ($row = $query->fetch_assoc()):
+                        $username = $_SESSION['username'];
+                        $query = $koneksi->query("SELECT * FROM data_login WHERE username = '$username'");
+                        $row = $query->fetch_assoc();
                     ?>
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['username'] ?></span>
-                                <div class="topbar-divider d-none d-sm-block"></div>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
-                            </a>
-                            <?php endwhile ?>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <!-- Link to trigger the logout modal -->
-                                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                </a>
-                            </div>
-                        </li>
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $row['username'] ?></span>
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="Profile" style="width: 40px; height: 40px;">
+                        </a>
+                    <!-- Dropdown Menu -->
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                        </a>
+                    </div>
+                    </li>
                     
                     <!-- Logout Modal -->
                     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
