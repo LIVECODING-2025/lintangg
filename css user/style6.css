@@ -1,18 +1,15 @@
 /* paragraf 4 */
-
-/* ========== GLOBAL RESET ========== */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  background-color: #f5f5f5;
-}
+    body {
+      font-family: 'poppins', sans-serif;
+    }
 
-nav {
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -100,6 +97,8 @@ nav {
   position: absolute;
   right: 12px;
   top: 50%;
+  background: transparent;
+  border: none;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
@@ -107,16 +106,76 @@ nav {
 }
 
 
-    .login-btn {
-      background-color: #013220;
-      color: white;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-    }
+.profile-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-img-nav {
+  width: 36px;               /* Sama tinggi dengan input search */
+  height: 36px;
+  border-radius: 50%;        /* Membuat bulat */
+  object-fit: cover;         /* Menghindari foto gepeng */
+  border: 2px solid #fff;    /* Opsional: Tambahkan border putih */
+  box-shadow: 0 0 2px rgba(0,0,0,0.15); /* Sedikit bayangan */
+  cursor: pointer;
+}
+
+.profile-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.profile-dropdown .dropdown-content {
+  right: 0;
+  left: auto;
+  top: 45px;
+  min-width: 120px;         /* Lebih kecil dari sebelumnya */
+  max-width: 180px;
+  width: auto;
+  padding: 6px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  background-color: white;
+  z-index: 1000;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.profile-dropdown .dropdown-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #013220;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.profile-dropdown .dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive - stack search and profile neatly */
+@media (max-width: 768px) {
+  .search-login {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .profile-dropdown {
+    align-self: flex-start;
+    justify-content: center;
+  }
+
+  .profile-dropdown .dropdown-content {
+    justify-content: center;
+    right: 10px;
+    left: auto;
+    top: 13px;
+    min-width: 120px;
+    max-width: 90vw;
+  }
+}
 
     .hamburger {
       display: none;
@@ -199,9 +258,6 @@ nav {
   justify-content: center;
 }
 
-.heroo h2 {
-  margin-top: 100px;
-}
 
 /* Tambahan agar teks tidak terlalu besar di layar kecil */
 .heroo h1 {
@@ -331,8 +387,8 @@ display: block;
 .kategori-list,
 .top-list {
   display: flex;
-  gap: 195px;
-  padding: 0px 40px;
+  gap: 140px;
+  padding: 0px 20px;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
@@ -505,17 +561,12 @@ display: block;
 
 /* Hero */
 .herooo {
-height: 90vh;
 color: white;
 text-align: center;
 padding: 60px 20px;
 display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.herooo h2 {
-margin-top: 100px; 
+flex-direction: column;
+justify-content: center;
 }
 
 .herooo h1 {
@@ -560,14 +611,13 @@ margin-top: -10px;
 
 /* Hero */
 .heroooo {
-height: 90vh;
 color: white;
 text-align: center;
 padding: 60px 20px;
 }
 
 .heroooo h2 {
-margin-top: 250px; 
+margin-top: 180px; 
 }
 
 .heroooo h1 {

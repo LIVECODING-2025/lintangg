@@ -3,18 +3,13 @@
 $koneksi = mysqli_connect("localhost","root","","wisata");
 
 function query($query) {
-    global $koneksi;
-    $result = mysqli_query($koneksi, $query);
-
-    if (!$result) {
-        die("Query Error: " . mysqli_error($koneksi));
-    }
-
-    $rows = [];
-    while( $row = mysqli_fetch_assoc($result) ) {
-        $rows[] = $row;
-    }
-    return $rows;
+  global $koneksi;
+  $result = mysqli_query($koneksi, $query);
+  $rows = [];
+  while($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
 }
 
 function registrasi($data) {
@@ -130,5 +125,37 @@ function cari_kategori_gunung_lokasi($keyword, $kategori) {
 
     return query($query); // Asumsikan fungsi query() sudah tersedia
 }
+
+// Fungsi batas kata
+function limitWords($string, $limit = 10) {
+    $words = explode(' ', $string);
+    return implode(' ', array_slice($words, 0, $limit));
+}
+
+function tampilkanRiwayatTiket($koneksi, $id_user) {
+    // Ambil username dari data_login
+    $sql_user = "SELECT username FROM data_login WHERE id_user = ?";
+    $stmt_user = $koneksi->prepare($sql_user);
+    $stmt_user->bind_param("i", $id_user);
+    $stmt_user->execute();
+    $result_user = $stmt_user->get_result();
+
+    if ($result_user->num_rows === 0) {
+        return null; // Tidak ditemukan
+    }
+
+    $username = $result_user->fetch_assoc()['username'];
+
+    // Ambil riwayat tiket dari data_userr
+    $sql = "SELECT nama_wisata, tanggal_booking FROM data_userr WHERE username = ?";
+    $stmt = $koneksi->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    return $result;
+}
+
+
 ?>
 

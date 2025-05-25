@@ -2,28 +2,24 @@
 session_start();
 include("function.php");
 
-// Cek apakah id tersedia di URL
+// Validasi id di URL
 if (!isset($_GET['id'])) {
-    die("ID tidak ditemukan di URL.");
+    die("ID tidak ditemukan.");
 }
 
-// Ambil dan sanitasi id
 $id = intval($_GET['id']);
 
-// Query ambil data berdasarkan id
+// Ambil data wisata berdasarkan ID
 $query = "SELECT * FROM data_wisataa WHERE id = $id";
 $result = mysqli_query($koneksi, $query);
 
-// Cek error SQL
 if (!$result) {
     die("Query error: " . mysqli_error($koneksi));
 }
 
-// Ubah hasil menjadi array asosiatif
 $data = mysqli_fetch_assoc($result);
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="id">

@@ -37,7 +37,7 @@ $koneksi->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
- <nav>
+<nav>
     <div class="logo">Piknik’In.Aja</div>
 
     <input type="checkbox" id="toggle-menu">
@@ -65,20 +65,30 @@ $koneksi->close();
     </div>
 
     <div class="search-login">
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-        </div>
-        <button class="login-btn"><a href="logout.php" style="text-decoration: none; color:white;">Logout</a></button>
+    <div class="search-box">
+        <form action="" method="POST">
+            <input type="text" placeholder="Search" name="keyword">
+            <button name="cari_dashboard" class="search-icon">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
     </div>
+
+    <!-- Ganti tombol logout dengan dropdown profil -->
+    <div class="profile-dropdown">
+        <img src="foto/profile real.png" class="profile-img-nav" alt="Profile">
+        <div class="dropdown-content">
+            <a href="form_edit_profile.php">Profil Saya</a>
+            <a href="logout.php">Logout</a>
+        </div>
+    </div>
+</div>
+
   </nav>
 
     <!-- Hero Section -->
-    <section class="herlooooo">
-        <h2>KENALI KAMI</h2>
+    <section class="herlooooo" style="height: 80vh;">
+        <h2 style="margin-top: 180px;">KENALI KAMI</h2>
         <h1>Tentang Kami</h1>
     </section>
 

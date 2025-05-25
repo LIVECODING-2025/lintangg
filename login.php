@@ -21,6 +21,7 @@ if (isset($_POST["login"])) {
         // Perbandingan longgar untuk tipe data yang berbeda
         if ($db_password == $db_password) { // Gunakan == untuk menghindari masalah tipe data
             // Simpan data ke sesi
+            $_SESSION["id_user"] = $row["id_user"]; // INI YANG PENTING
             $_SESSION["username"] = $row["username"];
             $_SESSION["level"] = $row["level"];
 

@@ -44,7 +44,7 @@ $koneksi->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Destinasi Piknik'in.Aja</title>
-  <link rel="stylesheet" href="style6.css" id="paragraf 5">
+  <link rel="stylesheet" href="css user/style6.css" id="paragraf 5">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <style>
@@ -53,48 +53,58 @@ $koneksi->close();
     }
 </style>
 <body>
-<nav>
-    <div class="logo">Piknik’In.Aja</div>
+<!-- Navbar -->
+    <nav>
+        <div class="logo">Piknik’In.Aja</div>
 
-    <input type="checkbox" id="toggle-menu">
-    <label for="toggle-menu" class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
+            <input type="checkbox" id="toggle-menu">
+            <label for="toggle-menu" class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+            </label>
 
-    <div class="nav-links">
-      <a href="dashboard.php">Dashboard</a>
+            <div class="nav-links">
+            <a href="dashboard.php">Dashboard</a>
 
-      <!-- Dropdown Destinasi -->
-      <div class="dropdown">
-        <label for="drop-destinasi" style="font-weight: bold;">Destinasi</label>
-        <input type="checkbox" id="drop-destinasi">
-        <div class="dropdown-content">
-          <a href="kategori_pantai.php">Pantai</a>
-          <a href="kategori_gunung.php" style="font-weight: bold;">Gunung</a>
-          <a href="kategori_airterjun.php">AirTerjun</a>
+            <!-- Dropdown Destinasi -->
+            <div class="dropdown">
+                <label for="drop-destinasi" style="font-weight: bold;">Destinasi</label>
+                <input type="checkbox" id="drop-destinasi">
+                <div class="dropdown-content">
+                    <a href="kategori_pantai.php">Pantai</a>
+                    <a href="kategori_gunung.php" style="font-weight: bold;">Gunung</a>
+                    <a href="kategori_airterjun.php">AirTerjun</a>
+                </div>
+            </div>
+            <a href="tentang_kami.php">Tentang Kami</a>
         </div>
-      </div>
 
-      <a href="tentang_kami.php">Tentang Kami</a>
-    </div>
+        <div class="search-login">
+            <div class="search-box">
+                <form action="" method="POST">
+                    <input type="text" placeholder="Search" name="keyword">
+                    <button name="cari_dashboard" class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
 
-    <div class="search-login">
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
+            <!-- Ganti tombol logout dengan dropdown profil -->
+            <div class="profile-dropdown">
+                <img src="foto/profile real.png" alt="Profile" class="profile-img-nav">
+            <div class="dropdown-content">
+                <a href="profile.php">Profil Saya</a>
+                <a href="logout.php">Logout</a>
+            </div>
+            </div>
         </div>
-        <button class="login-btn"><a href="logout.php" style="text-decoration: none; color:white;">Logout</a></button>
-    </div>
-  </nav>
+    </nav>
+
 
 <!-- Hero Section -->
-    <section class="herooo">
-        <h2>EXPLORE JATIM</h2>
+    <section class="herooo" style="height: 80vh;">
+        <h2 style="margin-top: 10px;">EXPLORE JATIM</h2>
         <h1>Destinasi</h1>
     </section>
 

@@ -13,15 +13,15 @@ $data = mysqli_fetch_assoc($result);
 
 // Simpan pemesanan jika form disubmit
 if (isset($_POST['submit_booking'])) {
-  $nama = $_POST['nama'];
+  $username = $_POST['username'];
   $tanggal_booking = $_POST['tanggal_booking'];
   $notelfon = $_POST['notelfon'];
   $nama_wisata = $_POST['nama_wisata'];
   $id = $_GET['id'] ?? null; // ID dari URL
 
-  if ($nama && $tanggal_booking && $notelfon && $nama_wisata) {
-      $insert = "INSERT INTO data_userr (nama, tanggal_booking, notelfon, nama_wisata) 
-                 VALUES ('$nama', '$tanggal_booking', '$notelfon', '$nama_wisata')";
+  if ($username && $tanggal_booking && $notelfon && $nama_wisata) {
+      $insert = "INSERT INTO data_userr (username, tanggal_booking, notelfon, nama_wisata) 
+                 VALUES ('$username', '$tanggal_booking', '$notelfon', '$nama_wisata')";
       if (mysqli_query($koneksi, $insert)) {
           // Redirect ke tiket.php dengan id
           header("Location: tiket.php?id=$id");
@@ -64,48 +64,57 @@ $koneksi->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deskripsi Destinasi Piknik'in.Aja</title>
-    <link rel="stylesheet" href="style1.css" id="paragraf 5">
+    <link rel="stylesheet" href="css user/style1.css" id="paragraf 5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 <nav>
     <div class="logo">Piknik’In.Aja</div>
 
-    <input type="checkbox" id="toggle-menu">
-    <label for="toggle-menu" class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
+      <input type="checkbox" id="toggle-menu">
+      <label for="toggle-menu" class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </label>
 
-    <div class="nav-links">
-      <a href="dashboard.php">Dashboard</a>
+      <div class="nav-links">
+        <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
 
-      <!-- Dropdown Destinasi -->
-      <div class="dropdown">
-        <label for="drop-destinasi" style="font-weight: bold;">Destinasi</label>
-        <input type="checkbox" id="drop-destinasi">
-        <div class="dropdown-content">
-          <a href="kategori_pantai.php">Pantai</a>
-          <a href="kategori_gunung.php">Gunung</a>
-          <a href="kategori_airterjun.php">AirTerjun</a>
+        <!-- Dropdown Destinasi -->
+        <div class="dropdown">
+          <label for="drop-destinasi">Destinasi</label>
+          <input type="checkbox" id="drop-destinasi">
+          <div class="dropdown-content">
+            <a href="kategori_pantai.php">Pantai</a>
+            <a href="kategori_gunung.php">Gunung</a>
+            <a href="kategori_airterjun.php">AirTerjun</a>
+          </div>
         </div>
+
+        <a href="tentang_kami.php">Tentang Kami</a>
       </div>
 
-      <a href="tentang_kami.php">Tentang Kami</a>
-    </div>
+      <div class="search-login">
+      <div class="search-box">
+          <form action="" method="POST">
+              <input type="text" placeholder="Search" name="keyword">
+              <button name="cari_dashboard" class="search-icon">
+                  <i class="fas fa-search"></i>
+              </button>
+          </form>
+      </div>
 
-    <div class="search-login">
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-        </div>
-        <button class="login-btn"><a href="logout.php" style="text-decoration: none; color:white;">Logout</a></button>
-    </div>
-  </nav>
+      <!-- Ganti tombol logout dengan dropdown profil -->
+      <div class="profile-dropdown">
+          <img src="foto/profile real.png" class="profile-img-nav" alt="Profile">
+          <div class="dropdown-content">
+              <a href="form_edit_profile.php">Profil Saya</a>
+              <a href="logout.php">Logout</a>
+          </div>
+      </div>
+  </div>
+</nav>
 
 <!-- Header Hero -->
     <section class="herrlo">
@@ -137,7 +146,7 @@ $koneksi->close();
     <form method="POST" action="">
       <div class="popup-right">
         <h3>Harga <strong>Rp<?= number_format($data["harga"] , 0, ',', '.'); ?></strong></h3>
-        <input type="text" class="form-input" name="nama" placeholder="Name" required>
+        <input type="text" class="form-input" name="username" placeholder="Username" required>
         <div class="form-row">
           <input type="date" class="form-input" name="tanggal_booking" placeholder="Tanggal Book" required>
           <input type="text" class="form-input" name="notelfon" placeholder="NoTelfon">
