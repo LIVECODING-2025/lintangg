@@ -149,7 +149,7 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $i++ ?></td>
-                                        <td><?= $row['nama']; ?></td>
+                                        <td><?= $row['username']; ?></td>
                                         <td><?= $row['notelfon']; ?></td>
                                         <td><?= $row['tanggal_booking']; ?></td>
                                         <td><?= $row['nama_wisata']; ?></td>

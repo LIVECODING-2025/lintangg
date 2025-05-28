@@ -36,55 +36,161 @@ $koneksi->close();
     <link rel="stylesheet" href="css user/style7.css" id="paragraf 7">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+<style>
+  @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px;
+        padding: 10px;
+      }
+
+      .logo {
+        order: 1;
+      }
+
+      .hamburger {
+        display: flex;
+        order: 2;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 30px;
+        order: 3;
+        padding: 10px 0;
+        margin-top: 10px;
+      }
+
+      .search-login {
+        display: none;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        order: 4;
+        padding: 10px 0;
+      }
+
+      #toggle-menu:checked ~ .nav-links,
+      #toggle-menu:checked ~ .search-login {
+        display: flex;
+      }
+
+      .search-box {
+        flex-grow: 1;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      .profile-dropdown {
+        position: relative;
+        margin-top: 0;
+        align-self: center;
+      }
+
+      .profile-dropdown .dropdown-content {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      }
+
+      .dropdown-content {
+        position: absolute;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      }
+    }
+</style>
 <body>
 <nav>
-    <div class="logo">Piknik’In.Aja</div>
+  <div class="logo">Piknik'In.Aja</div>
 
-    <input type="checkbox" id="toggle-menu">
-    <label for="toggle-menu" class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
 
-    <div class="nav-links">
-      <a href="dashboard.php">Dashboard</a>
-
-      <!-- Dropdown Destinasi -->
-      <div class="dropdown">
-        <label for="drop-destinasi">Destinasi</label>
-        <input type="checkbox" id="drop-destinasi">
-        <div class="dropdown-content">
-          <a href="kategori_pantai.php">Pantai</a>
-          <a href="kategori_gunung.php">Gunung</a>
-          <a href="kategori_airterjun.php">AirTerjun</a>
-        </div>
+  <div class="nav-links">
+    <a href="dashboard.php">Dashboard</a>
+    <div class="dropdown" id="destinasi-dropdown">
+      <label onclick="toggleDestinasiDropdown(event)">Destinasi</label>
+      <div class="dropdown-content" id="destinasi-menu">
+        <a href="kategori_pantai.php">Pantai</a>
+        <a href="kategori_gunung.php">Gunung</a>
+        <a href="kategori_airterjun.php">AirTerjun</a>
       </div>
-
-      <a href="tentang_kami.php" style="font-weight: bold;">Tentang Kami</a>
     </div>
+    <a href="tentang_kami.php" style="font-weight: bold;">Tentang Kami</a>
+  </div>
 
-    <div class="search-login">
+  <div class="search-login">
     <div class="search-box">
-        <form action="" method="POST">
-            <input type="text" placeholder="Search" name="keyword">
-            <button name="cari_dashboard" class="search-icon">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
+      <form action="" method="POST">
+        <input type="text" placeholder="Search" name="keyword">
+        <button name="cari_dashboard" class="search-icon">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="profile-dropdown" id="profile-dropdown">
+      <img src="foto/profile user.png" class="profile-img-nav" alt="Profile" onclick="toggleProfileDropdown(event)">
+      <div class="dropdown-content" id="profile-menu">
+        <a href="profile.php">Profil Saya</a>
+        <a href="logout.php" onclick="return confirmLogout(event)">Logout</a>
+      </div>
     </div>
 
-    <!-- Ganti tombol logout dengan dropdown profil -->
-    <div class="profile-dropdown">
-        <img src="foto/profile real.png" class="profile-img-nav" alt="Profile">
-        <div class="dropdown-content">
-            <a href="form_edit_profile.php">Profil Saya</a>
-            <a href="logout.php">Logout</a>
-        </div>
-    </div>
-</div>
+    <script>
+      function confirmLogout(event) {
+        const confirmation = confirm("Apakah Anda yakin ingin logout?");
+        if (!confirmation) {
+          event.preventDefault(); // Batalkan logout jika user klik Cancel
+          return false;
+        }
+        // Jika user klik OK, link tetap berjalan ke logout.php
+        return true;
+      }
+    </script>
+  </div>
+</nav>
 
-  </nav>
+<script>
+  function toggleProfileDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("profile-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  function toggleDestinasiDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("destinasi-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  // Tutup dropdown jika klik di luar
+  document.addEventListener("click", function(event) {
+    const profile = document.getElementById("profile-dropdown");
+    const profileMenu = document.getElementById("profile-menu");
+    const destinasi = document.getElementById("destinasi-dropdown");
+    const destinasiMenu = document.getElementById("destinasi-menu");
+
+    if (!profile.contains(event.target)) {
+      profileMenu.style.display = "none";
+    }
+    if (!destinasi.contains(event.target)) {
+      destinasiMenu.style.display = "none";
+    }
+  });
+</script>
 
     <!-- Hero Section -->
     <section class="herlooooo" style="height: 80vh;">

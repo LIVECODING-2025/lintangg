@@ -47,54 +47,89 @@ $koneksi->close();
   <title>Dashboard Piknik'in.Aja</title>
 </head>
 <body>
+   <!-- Navbar -->
   <nav>
-    <div class="logo">Piknik’In.Aja</div>
+  <div class="logo">Piknik'In.Aja</div>
 
-    <input type="checkbox" id="toggle-menu">
-    <label for="toggle-menu" class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
 
-    <div class="nav-links">
-      <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
-
-      <!-- Dropdown Destinasi -->
-      <div class="dropdown">
-        <label for="drop-destinasi">Destinasi</label>
-        <input type="checkbox" id="drop-destinasi">
-        <div class="dropdown-content">
-          <a href="kategori_pantai.php">Pantai</a>
-          <a href="kategori_gunung.php">Gunung</a>
-          <a href="kategori_airterjun.php">AirTerjun</a>
-        </div>
+  <div class="nav-links">
+    <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
+    <div class="dropdown" id="destinasi-dropdown">
+      <label onclick="toggleDestinasiDropdown(event)">Destinasi</label>
+      <div class="dropdown-content" id="destinasi-menu">
+        <a href="kategori_pantai.php">Pantai</a>
+        <a href="kategori_gunung.php">Gunung</a>
+        <a href="kategori_airterjun.php">AirTerjun</a>
       </div>
-
-      <a href="tentang_kami.php">Tentang Kami</a>
     </div>
+    <a href="tentang_kami.php">Tentang Kami</a>
+  </div>
 
-    <div class="search-login">
+  <div class="search-login">
     <div class="search-box">
-        <form action="" method="POST">
-            <input type="text" placeholder="Search" name="keyword">
-            <button name="cari_dashboard" class="search-icon">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
+      <form action="" method="POST">
+        <input type="text" placeholder="Search" name="keyword">
+        <button name="cari_dashboard" class="search-icon">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="profile-dropdown" id="profile-dropdown">
+      <img src="foto/profile user.png" class="profile-img-nav" alt="Profile" onclick="toggleProfileDropdown(event)">
+      <div class="dropdown-content" id="profile-menu">
+        <a href="profile.php">Profil Saya</a>
+        <a href="logout.php" onclick="return confirmLogout(event)">Logout</a>
+      </div>
     </div>
 
-    <!-- Ganti tombol logout dengan dropdown profil -->
-    <div class="profile-dropdown">
-        <img src="foto/profile real.png" class="profile-img-nav" alt="Profile">
-        <div class="dropdown-content">
-            <a href="form_edit_profile.php">Profil Saya</a>
-            <a href="logout.php">Logout</a>
-        </div>
-    </div>
-</div>
+    <script>
+      function confirmLogout(event) {
+        const confirmation = confirm("Apakah Anda yakin ingin logout?");
+        if (!confirmation) {
+          event.preventDefault(); // Batalkan logout jika user klik Cancel
+          return false;
+        }
+        // Jika user klik OK, link tetap berjalan ke logout.php
+        return true;
+      }
+    </script>
+  </div>
+</nav>
 
-  </nav>
+<script>
+  function toggleProfileDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("profile-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  function toggleDestinasiDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("destinasi-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  // Tutup dropdown jika klik di luar
+  document.addEventListener("click", function(event) {
+    const profile = document.getElementById("profile-dropdown");
+    const profileMenu = document.getElementById("profile-menu");
+    const destinasi = document.getElementById("destinasi-dropdown");
+    const destinasiMenu = document.getElementById("destinasi-menu");
+
+    if (!profile.contains(event.target)) {
+      profileMenu.style.display = "none";
+    }
+    if (!destinasi.contains(event.target)) {
+      destinasiMenu.style.display = "none";
+    }
+  });
+</script>
 
   <!-- Hero Section -->
     <section class="hero">
@@ -128,6 +163,11 @@ $koneksi->close();
     <!-- Explore Section -->
 <section class="explore-section">
   <div class="explore-container">
+    <div class="explore-images">
+      <img src="foto/explore wisata 2.jpeg" alt="Pantai">
+      <img src="foto/explore wisata 1.jpeg" alt="Gunung">
+      <img src="foto/explore wisata 3.jpeg" alt="Gunung Berapi">
+    </div>
     <div class="explore-text">
       <h2>EXPLORE WISATA JATIM</h2>
       <p>
@@ -136,14 +176,8 @@ $koneksi->close();
         menjelajahi keindahan wisata di Jawa Timur.
       </p>
     </div>
-    <div class="explore-images">
-      <img src="foto/explore wisata 2.jpeg" alt="Pantai">
-      <img src="foto/explore wisata 1.jpeg" alt="Gunung">
-      <img src="foto/explore wisata 3.jpeg" alt="Gunung Berapi">
-    </div>
   </div>
 </section>
-
 
     <!-- Kategori Wisata -->
     <section class="kategori-wisata" id="kategori">
@@ -195,9 +229,9 @@ $koneksi->close();
     <!-- Top Destination Section -->
     <section class="top-destinationn">
         <h2>Top Destination</h2>
-        <div class="top-listt">
+        <div class="top-listt" style="gap: 140px;">
         <?php foreach( $wisata as $row) : ?>
-            <div class="kategori-itemm">
+            <div class="kategori-itemm" style="max-width: 270px;">
                 <img src="foto/<?php echo $row["gambar"]; ?>" alt="">
                 <h3><?php echo $row ["nama_wisata"]; ?></h3>
                 <h4><?php echo $row ["lokasi"]; ?></h4>

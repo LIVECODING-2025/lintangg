@@ -1,14 +1,8 @@
 <?php
 session_start();
-require 'function.php';
+require 'function.php'; // pastikan koneksi ke DB
 
-if (!isset($_SESSION['id_user'])) {
-    die("Anda belum login. <a href='login.php'>Login di sini</a>");
-}
-
-$id_user = intval($_SESSION['id_user']);
-
-// Query data user
+$id_user = $_SESSION['id_user'];
 $data = query("SELECT * FROM data_login WHERE id_user = $id_user");
 
 if (!$data || count($data) === 0) {
@@ -17,16 +11,47 @@ if (!$data || count($data) === 0) {
 
 $user = $data[0];
 
-//edit profile
-$data = query("SELECT * FROM data_login WHERE id_user = $id_user");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nama = htmlspecialchars($_POST['nama']);
+    $username = htmlspecialchars($_POST['username']);
+    $alamat = htmlspecialchars($_POST['alamat']);
+    $notelfon = htmlspecialchars($_POST['notelfon']);
+    $fotoBaru = $user['foto'];
 
-if (!empty($data)) {
-    $result = $data[0]; // Ambil data pertama dari array
-    $id_user = $result['id_user'];
-    $nama = $result['nama'];
-    $username = $result['username'];
-} else {
-    die("Data pengguna tidak ditemukan.");
+    // Proses upload foto jika ada file diunggah
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+        $namaFile = $_FILES['foto']['name'];
+        $tmpName = $_FILES['foto']['tmp_name'];
+        $ekstensiValid = ['jpg', 'jpeg', 'png', 'webp'];
+        $ekstensiFile = strtolower(pathinfo($namaFile, PATHINFO_EXTENSION));
+
+        if (in_array($ekstensiFile, $ekstensiValid)) {
+            $namaBaru = uniqid() . '.' . $ekstensiFile;
+            move_uploaded_file($tmpName, 'foto/' . $namaBaru);
+
+            // Hapus foto lama jika bukan default
+            if (!empty($user['foto']) && $user['foto'] !== 'default.png' && file_exists('foto/' . $user['foto'])) {
+                unlink('foto/' . $user['foto']);
+            }
+
+            $fotoBaru = $namaBaru;
+        }
+    }
+
+    $query = "UPDATE data_login SET 
+                nama = '$nama',
+                username = '$username',
+                alamat = '$alamat',
+                notelfon = '$notelfon',
+                foto = '$fotoBaru'
+              WHERE id_user = $id_user";
+
+    if (mysqli_query($koneksi, $query)) {
+        header("Location: profile.php");    
+        exit;
+    } else {
+        echo "Gagal mengupdate profil: " . mysqli_error($koneksi);
+    }
 }
 ?>
 
@@ -252,10 +277,6 @@ if (!empty($data)) {
         flex-grow: 1;
       }
 
-      .search-icon button {
-        top: 50%;
-      }
-
       .search-box input {
         width: 100%;
       }
@@ -311,7 +332,7 @@ if (!empty($data)) {
     /* Profile Box floating */
     .profile-box {
       position: relative;
-      top: -100px; /* Naik di atas hero */
+      top: -150px; /* Naik di atas hero */
       margin: auto;
       background-color: #fff;
       border-radius: 12px;
@@ -323,10 +344,13 @@ if (!empty($data)) {
     }
 
     /* Gambar Profil */
-    .profile-box img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        position: absolute;
     }
 
     /* Responsif */
@@ -449,71 +473,56 @@ if (!empty($data)) {
   });
 </script>
 
-    <!-- Hero Section -->
-  <section class="heroo">
-    <h2>Profile Anda</h2>
-  </section>
+<!-- Hero Section -->
+<section class="heroo">
+  <div class="container">
+    <div class="row">
+        <h2>Edit Profile</h2>
+    </div>
+  </div>
+</section>
 
-  <!-- Profile Box -->
-  <div class="profile-box shadow">
-    <!-- Kontainer Foto & Username -->
-    <div class="d-flex align-items-center mb-4">
-      <div>
-        <img src="foto/<?= htmlspecialchars($user['foto']) ?>" alt="Profile"
-             class="rounded-circle border border-white shadow">
-      </div>
-      <div class="ms-3">
-        <h6 class="mb-0 text-uppercase text-muted" style="font-size: 14px;">
-          <?= htmlspecialchars($user['username']) ?>
-        </h6>
-        <p class="mb-0 text-dark" style="font-size: 16px;">
-          Hi, <?= htmlspecialchars($user['username']) ?>
-        </p>
-      </div>
+<!-- Floating Profile Form -->
+<section class="profile-box">
+  <form method="POST" action="edit_profile.php" enctype="multipart/form-data">
+    <input type="hidden" name="id_user" value="<?= $user['id_user']; ?>">
+
+    <div class="text-center mb-4">
+      <img src="foto/<?= htmlspecialchars($user['foto'] ?: 'default.png') ?>" alt="Foto Profil" class="profile-picture" style="position: static;">
     </div>
 
-    <!-- Form Edit -->
-    <form action="" method="POST" class="px-md-2">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama Pendek</label>
-            <input type="text" name="username" class="form-control" id="nama"
-                   placeholder="isi nama pendek anda"
-                   value="<?= htmlspecialchars(limitWords($result['username'] ?? '')) ?>">
-          </div>
-          <div class="mb-3">
-            <label for="telepon" class="form-label">Nomor Telepon</label>
-            <input type="text" name="notelfon" class="form-control" id="telepon"
-                   placeholder="isi nomor telepon anda"
-                   value="<?= htmlspecialchars($result['notelfon'] ?? '') ?>">
-          </div>
-        </div>
+    <div class="mb-3">
+      <label for="foto" class="form-label">Ganti Foto Profil</label>
+      <input type="file" name="foto" id="foto" class="form-control">
+      <small class="text-muted">Format: JPG, JPEG, PNG, WEBP. Max: ~2MB.</small>
+    </div>
 
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="namaLengkap" class="form-label">Nama Lengkap</label>
-            <input type="text" name="nama" class="form-control" id="namaLengkap"
-                   placeholder="isi nama lengkap anda"
-                   value="<?= htmlspecialchars(limitWords($result['nama'] ?? '')) ?>">
-          </div>
-          <div class="mb-3">
-            <label for="alamatLengkap" class="form-label">Alamat Lengkap</label>
-            <input type="text" name="alamat" class="form-control" id="alamatLengkap"
-                   placeholder="isi alamat lengkap anda"
-                   value="<?= htmlspecialchars($result['alamat'] ?? '') ?>">
-          </div>
-        </div>
-      </div>
+    <div class="mb-3">
+      <label for="nama" class="form-label">Nama Lengkap</label>
+      <input type="text" name="nama" id="nama" class="form-control" value="<?= htmlspecialchars($user['nama']) ?>" required>
+    </div>
 
-      <!-- Tombol Submit -->
-      <div class="text-center mt-4">
-        <button type="submit" name="submit" class="btn px-5 py-2" style="background-color: #013220; color: white;">
-          <a href="edit_profile.php" style="text-decoration: none; color: white;">Edit Profile</a>
-        </button>
-      </div>
-    </form>
-  </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" name="username" id="username" class="form-control" value="<?= htmlspecialchars($user['username']) ?>" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="alamat" class="form-label">Alamat</label>
+      <input type="text" name="alamat" id="alamat" class="form-control" value="<?= htmlspecialchars($user['alamat']) ?>">
+    </div>
+
+    <div class="mb-3">
+      <label for="notelfon" class="form-label">No. Telepon</label>
+      <input type="text" name="notelfon" id="notelfon" class="form-control" value="<?= htmlspecialchars($user['notelfon']) ?>">
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="submit" name="submit" class="btn" style="background-color: #013220; color: white;">Simpan Perubahan</button>
+      <a href="profile.php" class="btn btn-secondary">Kembali</a>
+    </div>
+  </form>
+</section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>

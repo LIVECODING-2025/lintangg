@@ -11,38 +11,80 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Screen Piknik'in.Aja</title>
-    <link rel="stylesheet" href="style2.css" id="paragraf 3">
+    <link rel="stylesheet" href="css user/style.css" id="paragraf 3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 </head>
 <body>
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="logo">Piknik'in.Aja</div>
-        <nav class="nav-links">
-            <a href="#">Dashboard</a>
-            
-            <div class="dropdown">
-                <button class="dropbtn">Destinasi ▼</button>
-                <div class="dropdown-content">
-                    <a href="login.php">Pantai</a>
-                    <a href="login.php">Gunung</a>
-                    <a href="login.php">Air Terjun</a>
-                </div>
-            </div>
+   <!-- Navbar -->
+  <nav>
+  <div class="logo">Piknik'In.Aja</div>
 
-            <a href="login.php">Tentang Kami</a>
-        </nav>
-        <div class="search-loginn">
-            <div class="search-boxxx">
-                <input type="text" placeholder="Search">
-                <button class="search-btnnn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-            <button class="login-btnn"><a href="login.php" style="color: white; text-decoration: none;">Login</a></button>
-        </div>
-    </header>
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
+
+  <div class="nav-links">
+    <a href="dashboard.php" style="font-weight: bold;">Dashboard</a>
+    <div class="dropdown" id="destinasi-dropdown">
+      <label onclick="toggleDestinasiDropdown(event)">Destinasi</label>
+      <div class="dropdown-content" id="destinasi-menu">
+        <a href="login.php">Pantai</a>
+        <a href="login.php">Gunung</a>
+        <a href="login.php">AirTerjun</a>
+      </div>
+    </div>
+    <a href="login.php">Tentang Kami</a>
+  </div>
+
+  <div class="search-login">
+    <div class="search-box">
+      <form action="" method="POST">
+        <input type="text" placeholder="Search" name="keyword">
+        <button name="cari_dashboard" class="search-icon">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="profile-dropdown" id="profile-dropdown">
+      <img src="foto/profile user.png" class="profile-img-nav" alt="Profile" onclick="toggleProfileDropdown(event)">
+      <div class="dropdown-content" id="profile-menu">
+        <a href="login.php">Login</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  function toggleProfileDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("profile-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  function toggleDestinasiDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("destinasi-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  // Tutup dropdown jika klik di luar
+  document.addEventListener("click", function(event) {
+    const profile = document.getElementById("profile-dropdown");
+    const profileMenu = document.getElementById("profile-menu");
+    const destinasi = document.getElementById("destinasi-dropdown");
+    const destinasiMenu = document.getElementById("destinasi-menu");
+
+    if (!profile.contains(event.target)) {
+      profileMenu.style.display = "none";
+    }
+    if (!destinasi.contains(event.target)) {
+      destinasiMenu.style.display = "none";
+    }
+  });
+</script>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -92,7 +134,7 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     <!-- Kategori Wisata -->
     <section class="kategori-wisata" id="kategori">
         <h2>Kategori Wisata</h2>
-        <div class="card-container">
+        <div class="card-container" style="gap: 70px;">
             <div class="card">
             <img src="foto/kategori pntai baru.jpeg" alt="Wisata Pantai">
             <div class="card-text">
@@ -102,7 +144,7 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
         </div>
         <div class="card">
             <img src="foto/kategori air terjun baru.jpeg" alt="Wisata Air Terjun">
-            <div class="card-text">
+            <div class="card-text"> 
                 <h3>Wisata Air Terjun</h3>
                 <a href="login.php" class="btn-detail">Detail</a>
             </div>
@@ -137,14 +179,14 @@ $wisata = query("SELECT * FROM data_wisataa WHERE kategori = 'Pantai'");
     </section>
 
     <!-- Top Destination Section -->
-    <section class="top-destination">
+    <section class="top-destinationn">
         <h2>Top Destination</h2>
-        <div class="top-list">
+        <div class="top-listt" style="gap: 140px;">
         <?php foreach( $wisata as $row) : ?>
-            <div class="kategori-item">
+            <div class="kategori-itemm" style="max-width: 270px;">
                 <img src="foto/<?php echo $row["gambar"]; ?>" alt="">
                 <h3><?php echo $row ["nama_wisata"]; ?></h3>
-                <h5><?php echo $row ["lokasi"]; ?></h5>
+                <h4><?php echo $row ["lokasi"]; ?></h4>
                 <p>Htm. <?php echo number_format($row["harga"], 0, ',', '.'); ?></p>
                 <button>
                     <a href="login.php?id=<?= $row["id"]; ?>">Detail</a>

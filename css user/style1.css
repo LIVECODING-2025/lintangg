@@ -13,8 +13,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 28px; /* Lebar padding diperbesar */
-      margin: 0px 35px;
+      padding: 15px 28px;
+      margin: 0px 60px;
       background-color: #fff;
       flex-wrap: wrap;
       position: relative;
@@ -23,7 +23,7 @@
     .logo {
       font-weight: bold;
       font-size: 22px;
-      color: #013220;
+      color: #0A3D2C;
     }
 
     .nav-links {
@@ -36,8 +36,8 @@
     .nav-links a,
     .nav-links label {
       text-decoration: none;
-      color: #013220;
-      font-size: 16px; /* Ukuran teks lebih besar */
+      color: #0A3D2C;
+      font-size: 16px;
       cursor: pointer;
     }
 
@@ -69,113 +69,81 @@
       background-color: #f0f0f0;
     }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
     .search-login {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+      position: relative;
     }
 
     .search-box {
-  position: relative;
-}
+      position: relative;
+    }
 
-.search-box input {
-  padding: 10px 40px 10px 14px;
-  border: none;
-  border-radius: 6px;
-  background-color: #f0f0f0;
-  font-size: 14px;
-  color: #333;
-  width: 220px;
-}
+    .search-box input {
+      padding: 10px 40px 10px 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #f0f0f0;
+      font-size: 14px;
+      color: #333;
+      width: 200px;
+    }
 
-.search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  background: transparent;
-  border: none;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-}
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      background: transparent;
+      border: none;
+      color: #013220;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+    }
 
+    .profile-dropdown {
+      position: relative;
+    }
 
-.profile-dropdown {
-  position: relative;
-  cursor: pointer;
-}
+    .profile-img-nav {
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      box-shadow: 0 0 2px rgba(0,0,0,0.15);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
 
-.profile-img-nav {
-  width: 36px;               /* Sama tinggi dengan input search */
-  height: 36px;
-  border-radius: 50%;        /* Membuat bulat */
-  object-fit: cover;         /* Menghindari foto gepeng */
-  border: 2px solid #fff;    /* Opsional: Tambahkan border putih */
-  box-shadow: 0 0 2px rgba(0,0,0,0.15); /* Sedikit bayangan */
-  cursor: pointer;
-}
+    .profile-dropdown .dropdown-content {
+      right: 0;
+      left: auto;
+      top: 40px;
+      min-width: 120px;
+      max-width: 180px;
+      width: auto;
+      padding: 6px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border-radius: 6px;
+      background-color: white;
+      z-index: 1000;
+      overflow: hidden;
+      display: none;
+    }
 
-.profile-dropdown:hover .dropdown-content {
-  display: block;
-}
+    .profile-dropdown .dropdown-content a {
+      display: block;
+      padding: 10px 16px;
+      color: #013220;
+      text-decoration: none;
+      font-size: 14px;
+    }
 
-.profile-dropdown .dropdown-content {
-  right: 0;
-  left: auto;
-  top: 45px;
-  min-width: 120px;         /* Lebih kecil dari sebelumnya */
-  max-width: 180px;
-  width: auto;
-  padding: 6px 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  background-color: white;
-  z-index: 1000;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.profile-dropdown .dropdown-content a {
-  display: block;
-  padding: 10px 16px;
-  color: #013220;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.profile-dropdown .dropdown-content a:hover {
-  background-color: #f0f0f0;
-}
-
-/* Responsive - stack search and profile neatly */
-@media (max-width: 768px) {
-  .search-login {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .profile-dropdown {
-    align-self: flex-start;
-    justify-content: center;
-  }
-
-  .profile-dropdown .dropdown-content {
-    justify-content: center;
-    right: 10px;
-    left: auto;
-    top: 13px;
-    min-width: 120px;
-    max-width: 90vw;
-  }
-}
+    .profile-dropdown .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
 
     .hamburger {
       display: none;
@@ -194,21 +162,43 @@
       display: none;
     }
 
-    .dropdown input[type="checkbox"] {
-      display: none;
-    }
-
     @media (max-width: 768px) {
-      .hamburger {
-        display: flex;
+      nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px;
+        padding: 10px;
       }
 
-      .nav-links,
-      .search-login {
+      .logo {
+        order: 1;
+      }
+
+      .hamburger {
+        display: flex;
+        order: 2;
+      }
+
+      .nav-links {
         display: none;
         width: 100%;
         flex-direction: column;
-        margin-top: 12px;
+        gap: 30px;
+        order: 3;
+        padding: 10px 0;
+        margin-top: 10px;
+      }
+
+      .search-login {
+        display: none;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        order: 4;
+        padding: 10px 0;
       }
 
       #toggle-menu:checked ~ .nav-links,
@@ -216,34 +206,30 @@
         display: flex;
       }
 
-      .nav-links a,
-      .nav-links label {
-        padding: 10px 0;
-      }
-
-      .dropdown-content {
-        position: relative;
-        box-shadow: none;
-        border-radius: 0;
-        background-color: #f9f9f9;
-        top: 0;
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: none;
-      }
-
-      .dropdown input[type="checkbox"]:checked + .dropdown-content {
-        display: block;
+      .search-box {
+        flex-grow: 1;
       }
 
       .search-box input {
         width: 100%;
       }
 
-      .login-btn {
-        width: 100%;
-        text-align: center;
+      .profile-dropdown {
+        position: relative;
+        margin-top: 0;
+        align-self: center;
+      }
+
+      .profile-dropdown .dropdown-content {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      }
+
+      .dropdown-content {
+        position: absolute;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
       }
     }
 

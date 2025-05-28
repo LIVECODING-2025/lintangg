@@ -52,12 +52,13 @@ function cari_dashboard($keyword) {
     // Escape keyword untuk mencegah SQL injection
     $keyword = htmlspecialchars($keyword);
 
-    // Query pencarian berdasarkan nama_wisata dan lokasi
+    // Query pencarian berdasarkan nama_wisata dan lokasi, tetapi tetap dalam kategori Pantai
     $query = "SELECT * FROM data_wisataa 
-              WHERE nama_wisata LIKE '%$keyword%' 
-              OR lokasi LIKE '%$keyword%'";
-    
-    return query($query); // Asumsikan 'query()' adalah fungsi untuk menjalankan SQL
+              WHERE kategori = 'Pantai' AND 
+              (nama_wisata LIKE '%$keyword%' 
+              OR lokasi LIKE '%$keyword%')";
+
+    return query($query);
 }
 
 function cari_kategori_pantai($keyword) {
@@ -155,7 +156,5 @@ function tampilkanRiwayatTiket($koneksi, $id_user) {
 
     return $result;
 }
-
-
 ?>
 

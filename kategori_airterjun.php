@@ -51,55 +51,127 @@ $koneksi->close();
   .heroooo{
     background: url('foto/bg kategori air terjun.jpeg') no-repeat center/cover;
   }
+
+  /* responsif */
+@media (max-width: 768px) {
+  .top-destination,
+  .kategori {
+    padding: 20px;
+  }
+
+  .heroooo {
+    height: 50px;
+  }
+
+  .top-destination,
+  .h2 {
+    font-size: 13px;
+  }
+
+  .kategori-list,
+  .top-list {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+    align-items: center;
+  }
+
+  .kategori-item {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .kategori-item button {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+  }
+}
 </style>
 <body>
   <!-- Navbar -->
     <nav>
-        <div class="logo">Piknik’In.Aja</div>
+  <div class="logo">Piknik'In.Aja</div>
 
-            <input type="checkbox" id="toggle-menu">
-            <label for="toggle-menu" class="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
-            </label>
+  <input type="checkbox" id="toggle-menu">
+  <label for="toggle-menu" class="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </label>
 
-            <div class="nav-links">
-            <a href="dashboard.php">Dashboard</a>
+  <div class="nav-links">
+    <a href="dashboard.php">Dashboard</a>
+    <div class="dropdown" id="destinasi-dropdown">
+      <label onclick="toggleDestinasiDropdown(event)" style="font-weight: bold;">Destinasi</label>
+      <div class="dropdown-content" id="destinasi-menu">
+        <a href="kategori_pantai.php">Pantai</a>
+        <a href="kategori_gunung.php">Gunung</a>
+        <a href="kategori_airterjun.php" style="font-weight: bold;">AirTerjun</a>
+      </div>
+    </div>
+    <a href="tentang_kami.php">Tentang Kami</a>
+  </div>
 
-            <!-- Dropdown Destinasi -->
-            <div class="dropdown">
-                <label for="drop-destinasi" style="font-weight: bold;">Destinasi</label>
-                <input type="checkbox" id="drop-destinasi">
-                <div class="dropdown-content">
-                    <a href="kategori_pantai.php">Pantai</a>
-                    <a href="kategori_gunung.php">Gunung</a>
-                    <a href="kategori_airterjun.php" style="font-weight: bold;">AirTerjun</a>
-                </div>
-            </div>
-            <a href="tentang_kami.php">Tentang Kami</a>
-        </div>
+  <div class="search-login">
+    <div class="search-box">
+      <form action="" method="POST">
+        <input type="text" placeholder="Search" name="keyword">
+        <button name="cari_kategori_airterjun" class="search-icon">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <div class="profile-dropdown" id="profile-dropdown">
+      <img src="foto/profile user.png" class="profile-img-nav" alt="Profile" onclick="toggleProfileDropdown(event)">
+      <div class="dropdown-content" id="profile-menu">
+        <a href="profile.php">Profil Saya</a>
+        <a href="logout.php" onclick="return confirmLogout(event)">Logout</a>
+      </div>
+    </div>
 
-        <div class="search-login">
-            <div class="search-box">
-                <form action="" method="POST">
-                    <input type="text" placeholder="Search" name="keyword">
-                    <button name="cari_dashboard" class="search-icon">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
+    <script>
+      function confirmLogout(event) {
+        const confirmation = confirm("Apakah Anda yakin ingin logout?");
+        if (!confirmation) {
+          event.preventDefault(); // Batalkan logout jika user klik Cancel
+          return false;
+        }
+        // Jika user klik OK, link tetap berjalan ke logout.php
+        return true;
+      }
+    </script>
+  </div>
+</nav>
 
-            <!-- Ganti tombol logout dengan dropdown profil -->
-            <div class="profile-dropdown">
-                <img src="foto/profile real.png" alt="Profile" class="profile-img-nav">
-            <div class="dropdown-content">
-                <a href="profile.php">Profil Saya</a>
-                <a href="logout.php">Logout</a>
-            </div>
-            </div>
-        </div>
-    </nav>
+<script>
+  function toggleProfileDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("profile-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  function toggleDestinasiDropdown(event) {
+    event.stopPropagation();
+    const menu = document.getElementById("destinasi-menu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  }
+
+  // Tutup dropdown jika klik di luar
+  document.addEventListener("click", function(event) {
+    const profile = document.getElementById("profile-dropdown");
+    const profileMenu = document.getElementById("profile-menu");
+    const destinasi = document.getElementById("destinasi-dropdown");
+    const destinasiMenu = document.getElementById("destinasi-menu");
+
+    if (!profile.contains(event.target)) {
+      profileMenu.style.display = "none";
+    }
+    if (!destinasi.contains(event.target)) {
+      destinasiMenu.style.display = "none";
+    }
+  });
+</script>
 
   <!-- Hero Section -->
   <section class="heroooo" style="height: 80vh;">
