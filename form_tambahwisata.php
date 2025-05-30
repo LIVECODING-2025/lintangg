@@ -165,9 +165,16 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
             </div>
 
             <div class="row mb-3">
-                <label for="harga" class="form-label col-sm-2">harga</label>
+                <label for="harga" class="form-label col-sm-2">Harga</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="harga" name="harga" autofocus>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="tiket" class="form-label col-sm-2">Tiket</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="tiket" name="tiket">
                 </div>
             </div>
 
@@ -186,9 +193,72 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
             </div>
 
             <div class="row mb-3">
+                <label for="deskripsi2" class="form-label col-sm-2">deskripsi 2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="deskripsi2" name="deskripsi2">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="deskripsi3" class="form-label col-sm-2">deskripsi 3</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="deskripsi3" name="deskripsi3">
+                </div>
+            </div>
+
+            <div class="row mb-3">
                 <label for="lokasi" class="form-label col-sm-2">Lokasi</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="lokasi" name="lokasi">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskripsi" class="form-label col-sm-2">Gambar Deskripsi</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskripsi" name="gambar_deskripsi">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskripsi_2" class="form-label col-sm-2">Gambar Deskripsi 2</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskripsi_2" name="gambar_deskripsi_2">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_3" class="form-label col-sm-2">Gambar Deskripsi 3</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskrpsi_3" name="gambar_deskrpsi_3">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_4" class="form-label col-sm-2">Gambar Deskripsi 4</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskrpsi_4" name="gambar_deskrpsi_4">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_5" class="form-label col-sm-2">Gambar Deskripsi 5</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskrpsi_5" name="gambar_deskrpsi_5">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_6" class="form-label col-sm-2">Gambar Deskripsi 6</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskrpsi_6" name="gambar_deskrpsi_6">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_7" class="form-label col-sm-2">Gambar Deskripsi 7</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="gambar_deskrpsi_7" name="gambar_deskrpsi_7">
                 </div>
             </div>
 
@@ -197,9 +267,9 @@ $data = mysqli_query($koneksi,'SELECT * FROM data_wisataa');
                 <div class="col-sm-10">
                     <select class="form-control" id="kategori" name="kategori">
                         <option value="">Pilih Kategori</option>
-                        <option value="gunung">Gunung</option>
-                        <option value="air terjun">Air terjun</option>
-                        <option value="pantai">Pantai</option>
+                        <option value="Gunung">Gunung</option>
+                        <option value="AirTerjun">AirTerjun</option>
+                        <option value="Pantai">Pantai</option>
                     </select>
                 </div>
             </div>

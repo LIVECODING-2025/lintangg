@@ -135,7 +135,7 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                                 <thead>
                                 <tr>
                                     <th class="text-center">No</th>
-                                    <th>Nama</th>
+                                    <th>Username</th>
                                     <th>Notelfon</th>
                                     <th>Tanggal Booking</th>
                                     <th>Nama Wisata</th>
@@ -155,15 +155,15 @@ $data = mysqli_query($koneksi, 'SELECT * FROM data_userr ORDER BY id DESC');
                                         <td><?= $row['nama_wisata']; ?></td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-2">
-                                                <form action="form_edit.php" method="get"
-                                                      onsubmit="return confirm('Apa Anda ingin mengedit data wisata ini?');">
+                                                <form action="form_edit_datauser.php" method="get"
+                                                      onsubmit="return confirm('Apa Anda ingin mengedit data user ini?');">
                                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
                                                     <button type="submit" name="edit" class="btn" style="background-color: #FFB200; color: white;">
                                                         <i class="ti ti-edit text-center"></i>
                                                     </button>
                                                 </form>
                                                 <form action="hapus.php" method="get"
-                                                      onsubmit="return confirm('Apa Anda ingin menghapus data wisata ini?');">
+                                                      onsubmit="return confirm('Apa Anda ingin menghapus data user ini?');">
                                                     <input type="hidden" name="id" value="<?= $row['id']; ?>">
                                                     <button type="submit" name="hapus" class="btn" style="background-color: #CB0404; color: white;">
                                                         <i class="ti ti-trash text-center"></i>

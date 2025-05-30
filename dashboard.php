@@ -46,6 +46,11 @@ $koneksi->close();
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <title>Dashboard Piknik'in.Aja</title>
 </head>
+<style>
+  .heroo{
+    background: url('css user/foto/halaman bg dashboard.jpeg') no-repeat center center/cover;
+  }
+</style>
 <body>
    <!-- Navbar -->
   <nav>
@@ -211,7 +216,7 @@ $koneksi->close();
     <section class="wisata-jatim">
         <div class="container-wisata">
             <div class="wisata-text">
-                <h2>Wisata Jawa Timur</h2>
+                <h2>WISATA JAWA TIMUR</h2>
                 <p>
                     Kami Mengenalkan wisata yang unik dan berkesan, menyediakan pengalaman yang kaya di Jawa Timur yang indah.
                     Dengan berkomitmen untuk menghadirkan perjalanan yang luar biasa, aman, dan mengasyikkan, membantu Anda

@@ -11,9 +11,19 @@ if($result = mysqli_fetch_assoc($wisata)){
     $id = $result['id'];
     $nama_wisata = $result['nama_wisata'];
     $harga = $result ['harga'];
+    $tiket = $result ['tiket'];
     $gambar = $result ['gambar'];
     $deskripsi = $result ['deskripsi'];
+    $deskripsi2 = $result ['deskripsi2'];
+    $deskripsi3 = $result ['deskripsi3'];
     $lokasi = $result ['lokasi'];
+    $gambar_deskripsi = $result ['gambar_deskripsi'];
+    $gambar_deskripsi_2 = $result ['gambar_deskripsi_2'];
+    $gambar_deskrpsi_3 = $result ['gambar_deskrpsi_3'];
+    $gambar_deskrpsi_4 = $result ['gambar_deskrpsi_4'];
+    $gambar_deskrpsi_5 = $result ['gambar_deskrpsi_5'];
+    $gambar_deskrpsi_6 = $result ['gambar_deskrpsi_6'];
+    $gambar_deskrpsi_7 = $result ['gambar_deskrpsi_7'];
     $kategori = $result ['kategori'];
 };
 
@@ -59,16 +69,16 @@ if($result = mysqli_fetch_assoc($wisata)){
 
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion custom-sidebar" id="accordionSidebar" style="background-color: #013220;">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_admin.php">
             <div class="sidebar-brand-icon rotate-n-10">
-                <img src="Frame 23.png" alt="Logo" style="width: 150px; height: 100px;">
+                <img src="foto/logo admin real.png" alt="Logo" style="width: 160px; height: 30px; margin-top: 10px;">
             </div>
         </a>
 
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="dashboard_admin.php">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -78,15 +88,21 @@ if($result = mysqli_fetch_assoc($wisata)){
                Tambahan
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="form_tambahproduk.php">
+            <a class="nav-link" href="form_tambahwisata.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Tambah Produk</span>
+                <span>Tambah Wisata</span>
             </a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
+            <a class="nav-link" href="data_pemesanan.php">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data Pemesanan</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="admin.php">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tabel</span>
+                <span>Data Wisata</span>
             </a>
         </li>
 
@@ -103,11 +119,11 @@ if($result = mysqli_fetch_assoc($wisata)){
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <h1 class="h3 mb-2 text-gray-800">Tabel</h1><br>
+                <h1 class="h3 mb-2 text-gray-800">Tabel Edit</h1><br>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold" style="color: #013220;">Form</h6>
+        <h6 class="m-0 font-weight-bold" style="color: #013220;">Form Edit Wisata</h6>
     </div>
     <div class="card-body">
         <form action="proses_edit.php" method="post" enctype="multipart/form-data">
@@ -122,6 +138,17 @@ if($result = mysqli_fetch_assoc($wisata)){
                 <label for="harga" class="form-label col-sm-2">harga</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" id="harga" name="harga" value="<?= $harga;?>" autofocus>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="tiket" class="form-label col-sm-2">Tiket</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="tiket" name="tiket">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($tiket)): ?>
+                    <p>Tiket saat ini: <strong><?= $tiket ?></strong></p>
+                    <img src="foto/<?= $tiket ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
                 </div>
             </div>
             <div class="row mb-3">
@@ -142,9 +169,98 @@ if($result = mysqli_fetch_assoc($wisata)){
                 </div>
             </div>
             <div class="row mb-3">
+                <label for="deskripsi2" class="form-label col-sm-2">Deskripsi 2</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="deskripsi2" name="deskripsi2" value="<?= $deskripsi2?>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="deskripsi3" class="form-label col-sm-2">Deskripsi 3</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="deskripsi3" name="deskripsi3" value="<?= $deskripsi3?>">
+                </div>
+            </div>
+            <div class="row mb-3">
                 <label for="lokasi" class="form-label col-sm-2">Lokasi</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="lokasi" name="lokasi" value="<?= $lokasi;?>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskripsi" class="form-label col-sm-2">Deskripsi Gambar</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskripsi" name="gambar_deskripsi">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskripsi)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskripsi ?></strong></p>
+                    <img src="foto/<?= $gambar_deskripsi ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskripsi_2" class="form-label col-sm-2">Deskripsi Gambar 2</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskripsi_2" name="gambar_deskripsi_2">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskripsi_2)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskripsi_2 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskripsi_2 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_3" class="form-label col-sm-2">Deskripsi Gambar 3</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskrpsi_3" name="gambar_deskrpsi_3">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskrpsi_3)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskrpsi_3 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskrpsi_3 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_4" class="form-label col-sm-2">Deskripsi Gambar 4</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskrpsi_4" name="gambar_deskrpsi_4">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskrpsi_4)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskrpsi_4 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskrpsi_4 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_5" class="form-label col-sm-2">Deskripsi Gambar 5</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskrpsi_5" name="gambar_deskrpsi_5">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskrpsi_5)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskrpsi_5 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskrpsi_5 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_6" class="form-label col-sm-2">Deskripsi Gambar 6</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskrpsi_6" name="gambar_deskrpsi_6">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskrpsi_6)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskrpsi_6 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskrpsi_6 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="gambar_deskrpsi_7" class="form-label col-sm-2">Deskripsi Gambar 7</label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="gambar_deskrpsi_7" name="gambar_deskrpsi_7">
+                <!-- Tampilkan nama gambar yang sudah ada -->
+                <?php if (!empty($gambar_deskrpsi_7)): ?>
+                    <p>Gambar saat ini: <strong><?= $gambar_deskrpsi_7 ?></strong></p>
+                    <img src="foto/<?= $gambar_deskrpsi_7 ?>" alt="Preview Gambar" style="max-width: 200px;">
+                <?php endif; ?>
                 </div>
             </div>
             <div class="row mb-3">
@@ -153,7 +269,7 @@ if($result = mysqli_fetch_assoc($wisata)){
                     <select class="form-control" id="kategori" name="kategori">
                     <option value="">Pilih Kategori</option>
                     <option <?= $kategori  === 'Gunung' ? 'selected' : ''; ?> value="Gunung">Gunung</option>
-                    <option <?= $kategori  === 'AirTerjun' ? 'selected' : ''; ?> value="AirTerjun">Air Terjun</option>
+                    <option <?= $kategori  === 'AirTerjun' ? 'selected' : ''; ?> value="AirTerjun">AirTerjun</option>
                     <option <?= $kategori  === 'Pantai' ? 'selected' : ''; ?> value="Pantai">Pantai</option>
             </select>
         </div>

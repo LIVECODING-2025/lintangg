@@ -228,8 +228,8 @@ $data = mysqli_fetch_assoc($result);
         <h3>Sorotan</h3>
         <ul>
           <li>✅ <?= $data["deskripsi"]; ?></li>
-          <li>✅ <?= $data["deskripsi 2"]; ?></li>
-          <li>✅ <?= $data["deskripsi 3"]; ?></li>
+          <li>✅ <?= $data["deskripsi2"]; ?></li>
+          <li>✅ <?= $data["deskripsi3"]; ?></li>
         </ul>
       </div>
     </div>

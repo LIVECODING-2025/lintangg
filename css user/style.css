@@ -237,7 +237,7 @@
 .hero {
   position: relative;
   height: 80vh;
-  background: url('foto/halaman bg dashboard.jpeg') no-repeat center center/cover;
+  
   display: flex;
   align-items: center;
   justify-content: flex-start;
